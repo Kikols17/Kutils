@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 
-vectorK *init_vectorK(size_t datatype_size, size_t capacity, int (*resize_func)(int, int)) {
+vectorK *vectorK_init(size_t datatype_size, size_t capacity, int (*resize_func)(int, int)) {
     /* Create a new vectorK with the given datatype_size and capacity.
      *      INPUTS:
      *          -> datatype_size (size_t): size of the datatype in bytes
@@ -38,7 +38,7 @@ vectorK *init_vectorK(size_t datatype_size, size_t capacity, int (*resize_func)(
 
     // initialize vectorK->resize_func
     if (resize_func==NULL) {
-        new_vectorK->resize_func = defresize_vectorK;
+        new_vectorK->resize_func = vectorK_defresize;
     } else {
         new_vectorK->resize_func = resize_func;
     }
@@ -46,7 +46,7 @@ vectorK *init_vectorK(size_t datatype_size, size_t capacity, int (*resize_func)(
     return new_vectorK;
 }
 
-vectorK *copy_vectorK(vectorK *v) {
+vectorK *vectorK_copy(vectorK *v) {
     /* Create a new vectorK with the same datatype size, capacity and elements as the given vectorK.
      *      INPUTS:
      *          -> v (vectorK *): pointer to the vectorK to be copied
@@ -57,21 +57,21 @@ vectorK *copy_vectorK(vectorK *v) {
      *
      */
     // initialize vectorK
-    vectorK *new_vectorK = init_vectorK(v->dinarray->datatype_size, 0, v->resize_func);
+    vectorK *new_vectorK = vectorK_init(v->dinarray->datatype_size, 0, v->resize_func);
     if (new_vectorK == NULL) {
         return NULL;
     }
 
     // copy v to new_vectorK
     if ( dinarrayK_copyto(new_vectorK->dinarray, v->dinarray)!=0 ) {
-        free_vectorK(new_vectorK);
+        vectorK_free(new_vectorK);
         return NULL;
     }
 
     return new_vectorK;
 }
 
-int copyto_vectorK(vectorK *dest, vectorK *src) {
+int vectorK_copyto(vectorK *dest, vectorK *src) {
     /* Copy the elements from the source vectorK to the destination vectorK.
      *      INPUTS:
      *          -> dest (vectorK *): pointer to the destination vectorK
@@ -101,7 +101,7 @@ int copyto_vectorK(vectorK *dest, vectorK *src) {
 }
 
 
-void free_vectorK(vectorK *v) {
+void vectorK_free(vectorK *v) {
     /* Free the memory allocated for the given vectorK.
      *      INPUTS:
      *          -> v (vectorK *): pointer to the vectorK to be freed
@@ -116,7 +116,7 @@ void free_vectorK(vectorK *v) {
 
 
 
-void *begin_vectorK(vectorK *v) {
+void *vectorK_begin(vectorK *v) {
     /* Get the pointer to the first element of the vectorK, that coincides with the first element of vectorK->dinarray.
      *      INPUTS:
      *          -> v (vectorK *): pointer to the vectorK
@@ -128,7 +128,7 @@ void *begin_vectorK(vectorK *v) {
     return dinarrayK_begin(v->dinarray);
 }
 
-void *end_vectorK(vectorK *v) {
+void *vectorK_end(vectorK *v) {
     /* Get the pointer to the last element of the vectorK, that does not necessarily coincide with the last element of vectorK->dinarray.
      *      INPUTS:
      *          -> v (vectorK *): pointer to the vectorK
@@ -142,7 +142,7 @@ void *end_vectorK(vectorK *v) {
 
 
 
-void *get_vectorK(vectorK *v, size_t index) {
+void *vectorK_get(vectorK *v, size_t index) {
     /* Get the pointer to the element at the given index in the vectorK.
      *      INPUTS:
      *          -> v (vectorK *): pointer to the vectorK
@@ -155,7 +155,7 @@ void *get_vectorK(vectorK *v, size_t index) {
     return dinarrayK_get(v->dinarray, index);
 }
 
-void *set_vectorK(vectorK *v, size_t index, void *element) {
+void *vectorK_set(vectorK *v, size_t index, void *element) {
     /* Set the element at the given index in the vectorK.
      *      INPUTS:
      *          -> v (vectorK *): pointer to the vectorK
@@ -171,7 +171,7 @@ void *set_vectorK(vectorK *v, size_t index, void *element) {
 
 
 
-void *pushback_vectorK(vectorK *v, void *element) {
+void *vectorK_pushback(vectorK *v, void *element) {
     /* Pushed back the element to the given vectorK.
      * If necessary, increases the capacity of the dinamic array, following the "resize_func" function.
      *      INPUTS:
@@ -201,7 +201,7 @@ void *pushback_vectorK(vectorK *v, void *element) {
     return dest;
 }
 
-void *popback_vectorK(vectorK *v) {
+void *vectorK_popback(vectorK *v) {
     /* Pops back the given vectorK, returning a pointer to the newly poped element.
      * If necessary, decrease the capacity of the dinamic array, following the "resize_func" function.
      * [ATENTION]: after the element is poped back theres no garantee that the value at the returned pointer will not be altered.
@@ -233,7 +233,7 @@ void *popback_vectorK(vectorK *v) {
 
 
 
-int defresize_vectorK(int new_size, int cur_capacity) {
+int vectorK_defresize(int new_size, int cur_capacity) {
     /* Default funtion for resizing the vector.
      * 
      * 

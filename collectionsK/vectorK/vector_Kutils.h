@@ -15,28 +15,28 @@ typedef struct vectorK {
 } vectorK;
 
 
-vectorK *init_vectorK(size_t datatype_size, size_t capacity, int (*resize_func)(int, int));
-vectorK *copy_vectorK(vectorK *v);
-int copyto_vectorK(vectorK *dest, vectorK *src);
+vectorK *vectorK_init(size_t datatype_size, size_t capacity, int (*resize_func)(int, int));
+vectorK *vectorK_copy(vectorK *v);
+int vectorK_copyto(vectorK *dest, vectorK *src);
 
-void free_vectorK(vectorK *v);
-
-
-void *begin_vectorK(vectorK *v);
-void *end_vectorK(vectorK *v);
+void vectorK_free(vectorK *v);
 
 
-void *get_vectorK(vectorK *v, size_t index);
-void *set_vectorK(vectorK *v, size_t index, void *element);
+void *vectorK_begin(vectorK *v);
+void *vectorK_end(vectorK *v);
 
 
-void *pushback_vectorK(vectorK *v, void *element);
-void *popback_vectorK(vectorK *v);
+void *vectorK_get(vectorK *v, size_t index);
+void *vectorK_set(vectorK *v, size_t index, void *element);
+
+
+void *vectorK_pushback(vectorK *v, void *element);
+void *vectorK_popback(vectorK *v);
 
 
 
 
-int defresize_vectorK(int new_size, int cur_capacity);
+int vectorK_defresize(int new_size, int cur_capacity);
 
 
 
