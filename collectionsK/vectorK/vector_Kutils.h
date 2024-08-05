@@ -10,7 +10,7 @@
 // Vector struct
 typedef struct vectorK {
     dinarrayK* dinarray;    // pointer to the dinarrayK
-    int size;               // size of the vector (number of elements it contains in its data) (must be <= than capacity)
+    size_t size;            // size of the vector (number of elements it contains in its data) (must be <= than capacity)
     int (*resize_func)(int, int);      // pointer to the function for resizing the dinarrayK
 } vectorK;
 

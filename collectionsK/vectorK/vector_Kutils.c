@@ -193,9 +193,10 @@ void *vectorK_pushback(vectorK *v, void *element) {
         if ( dinarrayK_resize(v->dinarray, new_capacity)!=0 ) {
             return NULL;
         }
+        v->dinarray->capacity = new_capacity;
     }
 
-    void *dest = dinarrayK_set(v, v->size, element);
+    void *dest = dinarrayK_set(v->dinarray, v->size, element);
     v->size++;
     
     return dest;
@@ -221,9 +222,10 @@ void *vectorK_popback(vectorK *v) {
         if ( dinarrayK_resize(v->dinarray, new_capacity)!=0 ) {
             return NULL;
         }
+        v->dinarray->capacity = new_capacity;
     }
 
-    void *dest = dinarrayK_get(v, v->size-1);
+    void *dest = dinarrayK_get(v->dinarray, v->size-1);
     v->size--;
 
     return dest;
@@ -246,6 +248,11 @@ int vectorK_defresize(int new_size, int cur_capacity) {
      *          -> -1: impossible new_size/capacity setup
      *          -> n, n>-1: new capacity that the dinarrayK should have
      */
+    
+    // if the values are invalid, return -1
+    if (new_size<0 || cur_capacity<0 || new_size-1>cur_capacity) {
+        return -1;
+    }
 
     // if the new_size does not fit inside the cur_capacity, double it
     if (new_size>cur_capacity) {
@@ -258,7 +265,7 @@ int vectorK_defresize(int new_size, int cur_capacity) {
         return cur_capacity/2;
     }
 
-    return -1;
+    return cur_capacity;
 }
 
 
