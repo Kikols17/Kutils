@@ -4,7 +4,7 @@
 #include "pair_Kutils.h"
 
 
-pairK *init_pairK(size_t first_datatype_size, size_t second_datatype_size) {
+pairK *pairK_init(size_t first_datatype_size, size_t second_datatype_size) {
     /* Create a new pairK with the given first_datatype_size and second_datatype_size.
      *      INPUTS:
      *          -> first_datatype_size (size_t): size of the first datatype in bytes
@@ -43,7 +43,7 @@ pairK *init_pairK(size_t first_datatype_size, size_t second_datatype_size) {
     return new_pair;
 }
 
-pairK *copy_pairK(pairK *pair) {
+pairK *pairK_copy(pairK *pair) {
     /* Create a new pairK with the same first_datatype_size, second_datatype_size and elements as the given pairK.
      *      INPUTS:
      *          -> pair (pairK *): pointer to the pairK to be copied
@@ -54,21 +54,21 @@ pairK *copy_pairK(pairK *pair) {
      *
      */
     // initialize new_pair
-    pairK *new_pair = init_pairK(pair->first_datatype_size, pair->second_datatype_size);
+    pairK *new_pair = pairK_init(pair->first_datatype_size, pair->second_datatype_size);
     if (new_pair == NULL) {
         return NULL;
     }
 
     // copy to the new_pair
-    if ( copyto_pairK(new_pair, pair)!=0 ) {
-        free_pairK(new_pair);
+    if ( pairK_copyto(new_pair, pair)!=0 ) {
+        pairK_free(new_pair);
         return NULL;
     }
 
     return new_pair;
 }
 
-int copyto_pairK(pairK *dest, pairK *src) {
+int pairK_copyto(pairK *dest, pairK *src) {
     /* Copy the elements from the source pairK to the destination pairK.
      *      INPUTS:
      *          -> dest (pairK *): pointer to the destination pairK
@@ -92,7 +92,7 @@ int copyto_pairK(pairK *dest, pairK *src) {
 }
 
 
-void free_pairK(pairK *pair) {
+void pairK_free(pairK *pair) {
     /* Free the memory allocated for the given pairK.
      *      INPUTS:
      *          -> pair (pairK *): pointer to the pairK to be freed
@@ -105,7 +105,7 @@ void free_pairK(pairK *pair) {
 
 
 
-void set_pairK(pairK *pair, void *first, void *second) {
+void pairK_set(pairK *pair, void *first, void *second) {
     /* Set the first and second elements of the pairK.
      *      INPUTS:
      *          -> pair (pairK *): pointer to the pairK
@@ -124,7 +124,7 @@ void set_pairK(pairK *pair, void *first, void *second) {
     memcpy(pair->second, second, pair->second_datatype_size);
 }
 
-void setfirst_pairK(pairK *pair, void *first) {
+void pairK_setfirst(pairK *pair, void *first) {
     /* Set the first element of the pairK.
      *      INPUTS:
      *          -> pair (pairK *): pointer to the pairK
@@ -139,7 +139,7 @@ void setfirst_pairK(pairK *pair, void *first) {
     memcpy(pair->first, first, pair->first_datatype_size);
 }
 
-void setsecond_pairK(pairK *pair, void *second) {
+void pairK_setsecond(pairK *pair, void *second) {
     /* Set the second element of the pairK.
      *      INPUTS:
      *          -> pair (pairK *): pointer to the pairK
