@@ -27,7 +27,7 @@ vectorK *init_vectorK(size_t datatype_size, size_t capacity, int (*resize_func)(
     }
 
     // initialize vectorK->dinarrayK
-    new_vectorK->dinarray = init_dinarrayK(datatype_size, capacity);
+    new_vectorK->dinarray = dinarrayK_init(datatype_size, capacity);
     if (new_vectorK->dinarray == NULL) {
         free(new_vectorK);
         return NULL;
@@ -63,7 +63,7 @@ vectorK *copy_vectorK(vectorK *v) {
     }
 
     // copy v to new_vectorK
-    if ( copyto_dinarrayK(new_vectorK->dinarray, v->dinarray)!=0 ) {
+    if ( dinarrayK_copyto(new_vectorK->dinarray, v->dinarray)!=0 ) {
         free_vectorK(new_vectorK);
         return NULL;
     }
@@ -89,7 +89,7 @@ int copyto_vectorK(vectorK *dest, vectorK *src) {
     }
 
     // copy src->dinarray to dest->dinarray
-    if ( copyto_dinarrayK(dest->dinarray, src->dinarray)!=0 ) {
+    if ( dinarrayK_copyto(dest->dinarray, src->dinarray)!=0 ) {
         return -1;
     }
 
@@ -110,7 +110,7 @@ void free_vectorK(vectorK *v) {
      *          -> None
      *
      */
-    free_dinarrayK(v->dinarray);
+    dinarrayK_free(v->dinarray);
     free(v);
 }
 
@@ -125,7 +125,7 @@ void *begin_vectorK(vectorK *v) {
      *          -> [valid pointer]: pointer to the first element of the vectorK
      *
      */
-    return begin_dinarrayK(v->dinarray);
+    return dinarrayK_begin(v->dinarray);
 }
 
 void *end_vectorK(vectorK *v) {
@@ -152,7 +152,7 @@ void *get_vectorK(vectorK *v, size_t index) {
      *          -> [valid pointer]: pointer to the element at the given index
      *
      */
-    return get_dinarrayK(v->dinarray, index);
+    return dinarrayK_get(v->dinarray, index);
 }
 
 void *set_vectorK(vectorK *v, size_t index, void *element) {
@@ -166,7 +166,7 @@ void *set_vectorK(vectorK *v, size_t index, void *element) {
      *          -> [valid pointer]: pointer to the element at the given index
      *
      */
-    return set_dinarrayK(v->dinarray, index, element);
+    return dinarrayK_set(v->dinarray, index, element);
 }
 
 
@@ -190,12 +190,12 @@ void *pushback_vectorK(vectorK *v, void *element) {
     }
 
     if (new_capacity != v->dinarray->capacity) {
-        if ( resize_dinarrayK(v->dinarray, new_capacity)!=0 ) {
+        if ( dinarrayK_resize(v->dinarray, new_capacity)!=0 ) {
             return NULL;
         }
     }
 
-    void *dest = set_dinarrayK(v, v->size, element);
+    void *dest = dinarrayK_set(v, v->size, element);
     v->size++;
     
     return dest;
@@ -218,12 +218,12 @@ void *popback_vectorK(vectorK *v) {
     }
 
     if (new_capacity != v->dinarray->capacity) {
-        if ( resize_dinarrayK(v->dinarray, new_capacity)!=0 ) {
+        if ( dinarrayK_resize(v->dinarray, new_capacity)!=0 ) {
             return NULL;
         }
     }
 
-    void *dest = get_dinarrayK(v, v->size-1);
+    void *dest = dinarrayK_get(v, v->size-1);
     v->size--;
 
     return dest;
