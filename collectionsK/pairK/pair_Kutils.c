@@ -118,10 +118,10 @@ void pairK_set(pairK *pair, void *first, void *second) {
      *
      */
     // set first
-    memcpy(pair->first, first, pair->first_datatype_size);
+    pairK_setfirst(pair, first);
 
     // set second
-    memcpy(pair->second, second, pair->second_datatype_size);
+    pairK_setsecond(pair, second);
 }
 
 void pairK_setfirst(pairK *pair, void *first) {
