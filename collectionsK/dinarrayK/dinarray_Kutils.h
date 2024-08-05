@@ -10,22 +10,22 @@ typedef struct dinarrayK {
 } dinarrayK;
 
 
-dinarrayK *init_dinarrayK(size_t datatype_size, size_t capacity);
-dinarrayK *copy_dinarrayK(dinarrayK *dinarray);
-int copyto_dinarrayK(dinarrayK *dest, dinarrayK *src);
+dinarrayK *dinarrayK_init(size_t datatype_size, size_t capacity);
+dinarrayK *dinarrayK_copy(dinarrayK *dinarray);
+int dinarrayK_copyto(dinarrayK *dest, dinarrayK *src);
 
-void free_dinarrayK(dinarrayK *dinarray);
-
-
-void *begin_dinarrayK(dinarrayK *dinarray);
-void *end_dinarrayK(dinarrayK *dinarray);
+void dinarrayK_free(dinarrayK *dinarray);
 
 
-void *get_dinarrayK(dinarrayK *dinarray, size_t index);
-void *set_dinarrayK(dinarrayK *dinarray, size_t index, void *element);
+void *dinarrayK_begin(dinarrayK *dinarray);
+void *dinarrayK_end(dinarrayK *dinarray);
 
 
-int resize_dinarrayK(dinarrayK *dinarray, size_t new_capacity);
+void *dinarrayK_get(dinarrayK *dinarray, size_t index);
+void *dinarrayK_set(dinarrayK *dinarray, size_t index, void *element);
+
+
+int dinarrayK_resize(dinarrayK *dinarray, size_t new_capacity);
 
 
 #endif // DINARRAY_KUTILS_H

@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-dinarrayK *init_dinarrayK(size_t datatype_size, size_t capacity) {
+dinarrayK *dinarrayK_init(size_t datatype_size, size_t capacity) {
     /* Create a new dinarrayK with the given datatype_size and capacity.
      *      INPUTS:
      *          -> datatype_size (size_t): size of the datatype in bytes
@@ -30,7 +30,7 @@ dinarrayK *init_dinarrayK(size_t datatype_size, size_t capacity) {
     return new_collection;
 }
 
-dinarrayK *copy_dinarrayK(dinarrayK *dinarray) {
+dinarrayK *dinarrayK_copy(dinarrayK *dinarray) {
     /* Create a new dinarrayK with the same datatype_size, capacity and elements as the given dinarrayK.
      *      INPUTS:
      *          -> dinarray (dinarrayK *): pointer to the dinarrayK to be copied
@@ -40,18 +40,18 @@ dinarrayK *copy_dinarrayK(dinarrayK *dinarray) {
      *          -> [valid pointer]: pointer to the new dinarrayK
      *
      */
-    dinarrayK *new_collection = init_dinarrayK(dinarray->datatype_size, 0);
+    dinarrayK *new_collection = dinarrayK_init(dinarray->datatype_size, 0);
     if (new_collection == NULL) {
         return NULL;
     }
-    if ( copyto_dinarrayK(new_collection, dinarray)!=0 ) {
-        free_dinarrayK(new_collection);
+    if ( dinarrayK_copyto(new_collection, dinarray)!=0 ) {
+        dinarrayK_free(new_collection);
         return NULL;
     }
     return new_collection;
 }
 
-int copyto_dinarrayK(dinarrayK *dest, dinarrayK *src) {
+int dinarrayK_copyto(dinarrayK *dest, dinarrayK *src) {
     /* Copy the elements from the source dinarrayK to the destination dinarrayK.
      *      INPUTS:
      *          -> dest (dinarrayK *): pointer to the destination dinarrayK
@@ -67,7 +67,7 @@ int copyto_dinarrayK(dinarrayK *dest, dinarrayK *src) {
         return 1;
     }
 
-    if (resize_dinarrayK(dest, src->capacity) != 0) {
+    if (dinarrayK_resize(dest, src->capacity) != 0) {
         return -1;
     }
     memcpy(dest->data, src->data, (size_t)(src->datatype_size*src->capacity) );
@@ -75,7 +75,7 @@ int copyto_dinarrayK(dinarrayK *dest, dinarrayK *src) {
 }
 
 
-void free_dinarrayK(dinarrayK *dinarray) {
+void dinarrayK_free(dinarrayK *dinarray) {
     /* Free the memory allocated for the dinarrayK.
      *      INPUTS:
      *          -> dinarray (dinarrayK *): pointer to the dinarrayK to be freed
@@ -86,7 +86,7 @@ void free_dinarrayK(dinarrayK *dinarray) {
 
 
 
-void *begin_dinarrayK(dinarrayK *dinarray) {
+void *dinarrayK_begin(dinarrayK *dinarray) {
     /* Get the pointer to the first element in the dinarray.
      *      INPUTS:
      *          -> dinarray (dinarrayK *): pointer to the dinarrayK
@@ -97,7 +97,7 @@ void *begin_dinarrayK(dinarrayK *dinarray) {
     return dinarray->data;
 }
 
-void *end_dinarrayK(dinarrayK *dinarray) {
+void *dinarrayK_end(dinarrayK *dinarray) {
     /* Get the pointer to the last element in the dinarray.
      *      INPUTS:
      *          -> dinarray (dinarrayK *): pointer to the dinarrayK
@@ -110,7 +110,7 @@ void *end_dinarrayK(dinarrayK *dinarray) {
 
 
 
-void *get_dinarrayK(dinarrayK *dinarray, size_t index) {
+void *dinarrayK_get(dinarrayK *dinarray, size_t index) {
     /* Get the pointer to the element at the given index in the dinarray.
      * after you get the pointer, you can cast it to the appropriate datatype.
      *      INPUTS:
@@ -127,7 +127,7 @@ void *get_dinarrayK(dinarrayK *dinarray, size_t index) {
     return dinarray->data + (index*dinarray->datatype_size);
 }
 
-void *set_dinarrayK(dinarrayK *dinarray, size_t index, void *element) {
+void *dinarrayK_set(dinarrayK *dinarray, size_t index, void *element) {
     /* Set the element at the given index in the dinarray.
      *      INPUTS:
      *          -> dinarray (dinarrayK *): pointer to the dinarrayK
@@ -148,7 +148,7 @@ void *set_dinarrayK(dinarrayK *dinarray, size_t index, void *element) {
 
 
 
-int resize_dinarrayK(dinarrayK *dinarray, size_t new_capacity) {
+int dinarrayK_resize(dinarrayK *dinarray, size_t new_capacity) {
     /* Resize the dinarrayK to the new capacity.
      *      INPUTS:
      *          -> dinarray (dinarrayK *): pointer to the dinarrayK
