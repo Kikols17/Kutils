@@ -84,7 +84,8 @@ int test_pushpop(int k) {
     }
 
     for (int i=0; i<k; i++) {
-        int element = *(int*)vectorK_popback(v);
+        int element = *(int*)vectorK_get(v, k-i-1);
+        vectorK_popback(v);
         if (element != k-i-1) {
             #if VERBOSE
             printf("[DEBUG] \"pushpop\" test#%d failed (%d-%d)\n", i, k-i-1, element);
