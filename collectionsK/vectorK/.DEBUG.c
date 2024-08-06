@@ -7,7 +7,7 @@
 
 
 
-#define VERBOSE true
+#define VERBOSE false
 
 
 int test_initfree(int n, int k);
@@ -24,9 +24,9 @@ int main() {
     sum += res;
     printf("[MAIN-DEBUG] \"initfree\": %d\n", res);
 
-    res = test_pushpop(100);
+    res = test_pushpop(500000000);
     sum += res;
-    printf("[MAIN-DEBUG] \"testsetget\": %d\n", res);
+    printf("[MAIN-DEBUG] \"pushpop\": %d\n", res);
 
     return sum;
 }
