@@ -205,10 +205,11 @@ void *vectorK_pushback(vectorK *v, void *element) {
     return dest;
 }
 
-void *vectorK_popback(vectorK *v, void *element) {
+void *vectorK_popback(vectorK *v) {
     /* Pops back the given vectorK, returning a pointer to the newly poped element.
      * If necessary, decrease the capacity of the dinamic array, following the "resize_func" function.
-     * [ATENTION]: after the element is poped back theres no garantee that the value at the returned pointer will not be altered, so we copy the value to the "element" pointer.
+     * [ATENTION]: after the element is poped back theres no garantee that the value at the returned pointer will not be altered.
+     * For speed purposes, the element is not copied to the "element" pointer, so you'll want to copy it beforehand if you want to keep it.
      *      INPUTS:
      *          -> v (vectorK *): pointer to the vectorK
      *      
@@ -224,9 +225,6 @@ void *vectorK_popback(vectorK *v, void *element) {
 
     // pop the element, and copy it to the "element" pointer
     void *dest = dinarrayK_get(v->dinarray, v->size-1);
-    if (element!=NULL) {
-        memcpy(element, dest, v->dinarray->datatype_size);
-    }
     v->size--;
 
     // resize the dinarray if necessary

@@ -32,7 +32,7 @@ void *vectorK_set(vectorK *v, size_t index, void *element);
 
 
 void *vectorK_pushback(vectorK *v, void *element);
-void *vectorK_popback(vectorK *v, void *element);
+void *vectorK_popback(vectorK *v);
 
 
 
