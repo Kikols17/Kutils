@@ -7,13 +7,12 @@
 
 
 
-#define VERBOSE false
+#define VERBOSE true
 
 
 int test_initfree(int n, int k);
-int test_copy(int n, int k);
-int test_resize(int n, int k);
 int test_pushpop(int k);
+int test_copy(int n, int k);
 
 
 int main() {
@@ -27,6 +26,10 @@ int main() {
     res = test_pushpop(500000000);
     sum += res;
     printf("[MAIN-DEBUG] \"pushpop\": %d\n", res);
+
+    res = test_copy(10000, 100);
+    sum += res;
+    printf("[MAIN-DEBUG] \"testcopy\": %d\n", res);
 
     return sum;
 }
@@ -94,6 +97,45 @@ int test_pushpop(int k) {
     }
 
     vectorK_free(v);
+
+    return 0;
+}
+
+
+int test_copy(int n, int k) {
+    vectorK *vectors[n];
+    vectors[0] = vectorK_init(sizeof(int), k, NULL);
+    if (vectors[0]==NULL) {
+        return -1;
+    }
+    for (int ii=0; ii<k; ii++) {
+        vectorK_pushback(vectors[0], &ii);
+    }
+
+    for (int i=1; i<n; i++) {
+        vectors[i] = vectorK_copy(vectors[0]);
+        if (vectors[i]==NULL) {
+            #if VERBOSE
+            printf("[DEBUG] \"copy\" copy test#%d failed\n", i);
+            #endif
+            return -1;
+        }
+        for (int ii=0; ii<k; ii++) {
+            if ( ii!=*(int*)vectorK_get(vectors[i], ii) ) {
+                #if VERBOSE
+                printf("[DEBUG] \"copy\" test#%d.%d failed\n", i, ii);
+                #endif
+                return 1;
+            }
+            #if VERBOSE
+            printf("[DEBUG] \"copy\" test#%d.%d passed\n", i, ii);
+            #endif
+        }
+    }
+
+    for (int i=0; i<n; i++) {
+        vectorK_free(vectors[i]);
+    }
 
     return 0;
 }
