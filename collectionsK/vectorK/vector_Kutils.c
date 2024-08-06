@@ -184,11 +184,13 @@ void *vectorK_pushback(vectorK *v, void *element) {
      * 
      */
 
+    // calculate the new capacity
     int new_capacity = v->resize_func(v->size+1, v->dinarray->capacity);
     if (new_capacity<0) {
         return NULL;
     }
 
+    // resize the dinarray if necessary
     if (new_capacity != v->dinarray->capacity) {
         if ( dinarrayK_resize(v->dinarray, new_capacity)!=0 ) {
             return NULL;
@@ -196,16 +198,17 @@ void *vectorK_pushback(vectorK *v, void *element) {
         v->dinarray->capacity = new_capacity;
     }
 
+    // push the element
     void *dest = dinarrayK_set(v->dinarray, v->size, element);
     v->size++;
     
     return dest;
 }
 
-void *vectorK_popback(vectorK *v) {
+void *vectorK_popback(vectorK *v, void *element) {
     /* Pops back the given vectorK, returning a pointer to the newly poped element.
      * If necessary, decrease the capacity of the dinamic array, following the "resize_func" function.
-     * [ATENTION]: after the element is poped back theres no garantee that the value at the returned pointer will not be altered.
+     * [ATENTION]: after the element is poped back theres no garantee that the value at the returned pointer will not be altered, so we copy the value to the "element" pointer.
      *      INPUTS:
      *          -> v (vectorK *): pointer to the vectorK
      *      
@@ -213,20 +216,26 @@ void *vectorK_popback(vectorK *v) {
      *          -> NULL: failed to popback element (most likely, dinarray was already empty, or error in the realloc resizing of the dinarray)
      */
 
+    // calculate the new capacity
     int new_capacity = v->resize_func(v->size-1, v->dinarray->capacity);
     if ( new_capacity<0 ) {
         return NULL;
     }
 
+    // pop the element, and copy it to the "element" pointer
+    void *dest = dinarrayK_get(v->dinarray, v->size-1);
+    if (element!=NULL) {
+        memcpy(element, dest, v->dinarray->datatype_size);
+    }
+    v->size--;
+
+    // resize the dinarray if necessary
     if (new_capacity != v->dinarray->capacity) {
         if ( dinarrayK_resize(v->dinarray, new_capacity)!=0 ) {
             return NULL;
         }
         v->dinarray->capacity = new_capacity;
     }
-
-    void *dest = dinarrayK_get(v->dinarray, v->size-1);
-    v->size--;
 
     return dest;
 }
@@ -250,7 +259,7 @@ int vectorK_defresize(int new_size, int cur_capacity) {
      */
     
     // if the values are invalid, return -1
-    if (new_size<0 || cur_capacity<0 || new_size-1>cur_capacity) {
+    if (new_size<0 || cur_capacity<=0 || new_size-1>cur_capacity) {
         return -1;
     }
 
@@ -267,6 +276,35 @@ int vectorK_defresize(int new_size, int cur_capacity) {
 
     return cur_capacity;
 }
+
+int vectorK_tightresize(int new_size, int cur_capacity) {
+    /* Tight funtion for resizing the vector.
+     *
+     *
+     * [IMPORTANT][ALL OTHER IMPLEMENTATIONS OF THIS FUNCTION SHOULD FOLLOW THIS INPUTS/OUTPUT RULES]
+     *      INPUTS:
+     *          -> new_size (int): value of the new_size that the dinarray will have after the current operation (+1 if push_back, -1 if pop_back)
+     *          -> cur_capacity (int): value of the current capacity of the dinarray
+     *
+     *      OUTPUT:
+     *          -> -1: impossible new_size/capacity setup
+     *          -> n, n>-1: new capacity that the dinarrayK should have
+     */
+    
+    // if the values are invalid, return -1
+    if (new_size<0 || cur_capacity<=0 || new_size-1>cur_capacity) {
+        return -1;
+    }
+
+    // make sure that the new_capacity is never smaller than 1
+    if (new_size==0) {
+        return 1;
+    }
+
+    // make sure that the new_capacity is always the same as the new_size (except if the new_size is 0, then it should be 1)
+    return new_size;
+}
+
 
 
 #endif // VECTOR_KUTILS_C

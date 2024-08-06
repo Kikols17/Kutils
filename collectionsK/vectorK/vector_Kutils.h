@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 // Vector struct
@@ -31,12 +32,13 @@ void *vectorK_set(vectorK *v, size_t index, void *element);
 
 
 void *vectorK_pushback(vectorK *v, void *element);
-void *vectorK_popback(vectorK *v);
+void *vectorK_popback(vectorK *v, void *element);
 
 
 
 
 int vectorK_defresize(int new_size, int cur_capacity);
+int vectorK_tightresize(int new_size, int cur_capacity);
 
 
 

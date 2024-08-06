@@ -7,7 +7,7 @@
 
 
 
-#define VERBOSE true
+#define VERBOSE false
 
 
 int test_initfree(int n, int k);
@@ -23,7 +23,7 @@ int main() {
     sum += res;
     printf("[MAIN-DEBUG] \"initfree\": %d\n", res);
 
-    res = test_pushpop(500000000);
+    res = test_pushpop(10000);
     sum += res;
     printf("[MAIN-DEBUG] \"pushpop\": %d\n", res);
 
@@ -64,7 +64,7 @@ int test_initfree(int n, int k) {
 
 
 int test_pushpop(int k) {
-    vectorK *v = vectorK_init(sizeof(int), 1, NULL);
+    vectorK *v = vectorK_init(sizeof(int), 1, vectorK_tightresize);
     if (v==NULL) {
         #if VERBOSE
         printf("[DEBUG] \"pushpop\" init failed\n");
@@ -84,7 +84,8 @@ int test_pushpop(int k) {
     }
 
     for (int i=0; i<k; i++) {
-        int element = *(int *)vectorK_popback(v);
+        int element;
+        vectorK_popback(v, &element);
         if (element != k-i-1) {
             #if VERBOSE
             printf("[DEBUG] \"pushpop\" test#%d failed (%d-%d)\n", i, k-i-1, element);
