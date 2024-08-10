@@ -181,7 +181,8 @@ void heapsortK(void *begin, void *end, size_t datatype_size, int (*cmp)(const vo
 
 /* master sortK function that can call all others */
 void sortK(void *begin, void *end, size_t datatype_size, void (sort_type)(void *begin, void *end, size_t datatype_size, int (*cmp)(const void *, const void *, size_t), void (*swap)(void *, void *, size_t)), int (*cmp)(const void *, const void *, size_t), void (*swap)(void *, void *, size_t)) {
-    /* Sorts an array using the specified sort function
+    /* Sorts an array using the specified sort, cmp and swap functions.
+     * If no functions are provided (NULL), de defaults are: sort->heapsortK, cmp->bincmpK, swap->binswapK
      *
      *      INPUTS:
      *          begin: pointer to the first element of the array
@@ -194,7 +195,7 @@ void sortK(void *begin, void *end, size_t datatype_size, void (sort_type)(void *
      */
 
     if (sort_type==NULL) {
-        sort_type = quicksortK;
+        sort_type = heapsortK;
     }
     if (cmp==NULL) {
         cmp = bincmpK;
