@@ -5,13 +5,12 @@
 #include <unistd.h>
 
 #include "sort_Kutils.h"
+#include "../swapK/swap_Kutils.h"
 
 
 
 #define VERBOSE false
 
-
-int test_swapK(int n, void (*swap) (void*, void*, size_t));
 
 int test_intcmpK(int n);
 int test_doublecmpK(int n);
@@ -23,15 +22,6 @@ int test_sort(int n, int k, void (sort_type)(void *begin, void *end, size_t data
 int main() {
     int sum = 0;
     int res = 0;
-
-
-    res = test_swapK(100, binswapK);
-    sum += res;
-    printf("[MAIN-DEBUG] \"test_swapK (binswapK)\": %d\n", res);
-
-    res = test_swapK(100, intswapK);
-    sum += res;
-    printf("[MAIN-DEBUG] \"test_swapK (intswapK)\": %d\n", res);
 
     res = test_intcmpK(100);
     sum += res;
@@ -67,28 +57,6 @@ int main() {
 
 
 
-
-int test_swapK(int n, void (*swap) (void*, void*, size_t)) {
-    for (int i=0; i<n; i++) {
-        int or_a = rand() % 1000 - 500;
-        int or_b = rand() % 1000 - 500;
-        int a = or_a;
-        int b = or_b;
-        swap(&a, &b, sizeof(int));
-        if (a==or_b && b==or_a) {
-            #if VERBOSE
-            printf("swapK test %ld passed: a->%d, b->%d\n", i, a, b);
-            #endif
-        } else {
-            #if VERBOSE
-            printf("swapK test %ld failed: a->%d, b->%d\n", i, a, b);
-            #endif
-            return 1;
-        }
-    }
-
-    return 0;
-}
 
 int test_intcmpK(int n) {
     for (int i=0; i<n; i++) {

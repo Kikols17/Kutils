@@ -4,13 +4,6 @@
 #include <stdlib.h>
 
 
-/* Utility functions for the sortK function */
-// Standard swapping functions
-void intswapK(void *a, void *b, size_t datatype_size);
-void doubleswapK(void *a, void *b, size_t datatype_size);
-void charswapK(void *a, void *b, size_t datatype_size);
-void binswapK(void *a, void *b, size_t size);
-
 // Standard comparison functions
 int intcmpK(const void *a, const void *b, size_t size);
 int doublecmpK(const void *a, const void *b, size_t size);
