@@ -4,13 +4,7 @@
 #include <stdlib.h>
 
 
-// Standard comparison functions
-int intcmpK(const void *a, const void *b, size_t size);
-int doublecmpK(const void *a, const void *b, size_t size);
-int charcmpK(const void *a, const void *b, size_t size);
-int bincmpK(const void *a, const void *b, size_t size);
-
-// Auxiliary functions for the Standard sort functions
+// Auxiliary functions for the standard sort functions
 void *quicksortK_partition(void *begin, void *end, size_t datatype_size, int (*cmp)(const void *, const void *, size_t), void (*swap)(void *, void *, size_t));
 void heapsortK_heapify(void *begin, void *end, void *i, size_t datatype_size, int (*cmp)(const void *, const void *, size_t), void (*swap)(void *, void *, size_t));
 
