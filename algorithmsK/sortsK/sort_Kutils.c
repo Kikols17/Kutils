@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "sort_Kutils.h"
-#include "../swapK/swap_Kutils.h"
-#include "../cmpK/cmp_Kutils.h"
+#include "../../datatypehandleK/cmpK/cmp_Kutils.h"
+#include "../../datatypehandleK/swapK/swap_Kutils.h"
 
 
 // Auxiliary functions for the Standard sort functions
