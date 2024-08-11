@@ -8,8 +8,10 @@
 
 
 /* Standard swapping functions */
+
+// Charachter
 void charswapK(void *a, void *b, size_t datatype_size) {
-    /* Swaps the contents of two memory locations of size 'size'
+    /* Swaps the chars at the memory locations pointed by 'a' and 'b'
      * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
      * [ATTENTION] This function is specific for characters
      *
@@ -24,10 +26,44 @@ void charswapK(void *a, void *b, size_t datatype_size) {
     *(char *)b = temp;
 }
 
+void scharswapK(void *a, void *b, size_t datatype_size) {
+    /* Swaps the signed chars at the memory locations pointed by 'a' and 'b'
+     * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
+     * [ATTENTION] This function is specific for signed chars
+     *
+     *      INPUTS:
+     *          a: pointer to the first memory location
+     *          b: pointer to the second memory location
+     *          datatype_size: size of the memory locations
+     *
+     */
+    signed char temp = *(signed char *)a;
+    *(signed char *)a = *(signed char *)b;
+    *(signed char *)b = temp;
+}
+
+void ucharswapK(void *a, void *b, size_t datatype_size) {
+    /* Swaps the unsigned chars at the memory locations pointed by 'a' and 'b'
+     * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
+     * [ATTENTION] This function is specific for unsigned chars
+     *
+     *      INPUTS:
+     *          a: pointer to the first memory location
+     *          b: pointer to the second memory location
+     *          datatype_size: size of the memory locations
+     *
+     */
+    unsigned char temp = *(unsigned char *)a;
+    *(unsigned char *)a = *(unsigned char *)b;
+    *(unsigned char *)b = temp;
+}
 
 
+
+
+// Integers
 void intswapK(void *a, void *b, size_t datatype_size) {
-    /* Swaps the contents of two memory locations of size 'size'
+    /* Swaps ints at the memory locations pointed by 'a' and 'b'
      * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
      * [ATTENTION] This function is specific for integers
      *
@@ -43,7 +79,7 @@ void intswapK(void *a, void *b, size_t datatype_size) {
 }
 
 void shintswapK(void *a, void *b, size_t datatype_size) {
-    /* Swaps the contents of two memory locations of size 'size'
+    /* Swaps the short ints at the memory locations pointed by 'a' and 'b'
      * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
      * [ATTENTION] This function is specific for short int
      *
@@ -58,8 +94,40 @@ void shintswapK(void *a, void *b, size_t datatype_size) {
     *(short int *)b = temp;
 }
 
-void lintswapK(void *a, void *b, size_t datetype_size) {
-    /* Swaps the contents of two memory locations of size 'size'
+void ushintswapK(void *a, void *b, size_t datatype_size) {
+    /* Swaps the unsigned short ints at the memory locations pointed by 'a' and 'b'
+     * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
+     * [ATTENTION] This function is specific for unsigned short int
+     *
+     *      INPUTS:
+     *          a: pointer to the first memory location
+     *          b: pointer to the second memory location
+     *          datatype_size: size of the memory locations
+     *
+     */
+    unsigned short int temp = *(unsigned short int *)a;
+    *(unsigned short int *)a = *(unsigned short int *)b;
+    *(unsigned short int *)b = temp;
+}
+
+void uintswapK(void *a, void *b, size_t datatype_size) {
+    /* Swaps the unsigned ints at the memory locations pointed by 'a' and 'b'
+     * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
+     * [ATTENTION] This function is specific for unsigned integers
+     *
+     *      INPUTS:
+     *          a: pointer to the first memory location
+     *          b: pointer to the second memory location
+     *          datatype_size: size of the memory locations
+     *
+     */
+    unsigned int temp = *(unsigned int *)a;
+    *(unsigned int *)a = *(unsigned int *)b;
+    *(unsigned int *)b = temp;
+}
+
+void lintswapK(void *a, void *b, size_t datatype_size) {
+    /* Swaps the long ints at the memory locations pointed by 'a' and 'b'
      * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
      * [ATTENTION] This function is specific for long int
      *
@@ -74,8 +142,24 @@ void lintswapK(void *a, void *b, size_t datetype_size) {
     *(long int *)b = temp;
 }
 
-void llintswapK(void *a, void *b, size_t datetype_size) {
-    /* Swaps the contents of two memory locations of size 'size'
+void ulintswapK(void *a, void *b, size_t datatype_size) {
+    /* Swaps the unsigned long ints at the memory locations pointed by 'a' and 'b'
+     * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
+     * [ATTENTION] This function is specific for unsigned long int
+     *
+     *      INPUTS:
+     *          a: pointer to the first memory location
+     *          b: pointer to the second memory location
+     *          datatype_size: size of the memory locations
+     *
+     */
+    unsigned long int temp = *(unsigned long int *)a;
+    *(unsigned long int *)a = *(unsigned long int *)b;
+    *(unsigned long int *)b = temp;
+}
+
+void llintswapK(void *a, void *b, size_t datatype_size) {
+    /* Swaps the long long ints at the memory locations pointed by 'a' and 'b'
      * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
      * [ATTENTION] This function is specific for long long int
      *
@@ -90,10 +174,28 @@ void llintswapK(void *a, void *b, size_t datetype_size) {
     *(long long int *)b = temp;
 }
 
+void ullintswapK(void *a, void *b, size_t datatype_size) {
+    /* Swaps the unsigned long long ints at the memory locations pointed by 'a' and 'b'
+     * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
+     * [ATTENTION] This function is specific for unsigned long long int
+     *
+     *      INPUTS:
+     *          a: pointer to the first memory location
+     *          b: pointer to the second memory location
+     *          datatype_size: size of the memory locations
+     *
+     */
+    unsigned long long int temp = *(unsigned long long int *)a;
+    *(unsigned long long int *)a = *(unsigned long long int *)b;
+    *(unsigned long long int *)b = temp;
+}
 
 
+
+
+// Floats
 void floatswapK(void *a, void *b, size_t datatype_size) {
-    /* Swaps the contents of two memory locations of size 'size'
+    /* Swaps the floats at the memory locations pointed by 'a' and 'b'
      * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
      * [ATTENTION] This function is specific for floats
      *
@@ -110,8 +212,10 @@ void floatswapK(void *a, void *b, size_t datatype_size) {
 
 
 
+
+// Doubles
 void doubleswapK(void *a, void *b, size_t datatype_size) {
-    /* Swaps the contents of two memory locations of size 'size'
+    /* Swaps the doubles at the memory locations pointed by 'a' and 'b'
      * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
      * [ATTENTION] This function is specific for doubles
      *
@@ -127,7 +231,7 @@ void doubleswapK(void *a, void *b, size_t datatype_size) {
 }
 
 void ldoubleswapK(void *a, void *b, size_t datatype_size) {
-    /* Swaps the contents of two memory locations of size 'size'
+    /* Swaps long doubles at the memory locations pointed by 'a' and 'b'
      * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
      * [ATTENTION] This function is specific for doubles
      *
@@ -144,6 +248,8 @@ void ldoubleswapK(void *a, void *b, size_t datatype_size) {
 
 
 
+
+// Binary
 void binswapK(void *a, void *b, size_t datatype_size) {
     /* Swaps the contents of two memory locations of size 'size'
      * [ATTENTION] All implementations of this function must follow these INPUTS/OUTPUT
