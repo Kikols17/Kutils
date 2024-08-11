@@ -26,4 +26,4 @@ int ldoublecmpK(const void *a, const void *b, size_t size);
 int bincmpK(const void *a, const void *b, size_t size);
 
 
-#endif
+#endif // CMP_KUTILS_H
