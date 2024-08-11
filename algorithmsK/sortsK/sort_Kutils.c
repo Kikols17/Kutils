@@ -5,7 +5,7 @@
 
 #include "sort_Kutils.h"
 #include "../../datatypehandleK/cmpK/cmpSTD_Kutils.h"
-#include "../../datatypehandleK/swapK/swap_Kutils.h"
+#include "../../datatypehandleK/swapK/swapSTD_Kutils.h"
 
 
 // Auxiliary functions for the Standard sort functions

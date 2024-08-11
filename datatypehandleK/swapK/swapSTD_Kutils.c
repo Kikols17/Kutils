@@ -1,10 +1,15 @@
-#ifndef SWAP_KUTILS_C
-#define SWAP_KUTILS_C
+#ifndef SWAPSTD_KUTILS_C
+#define SWAPSTD_KUTILS_C
 
 #include <stdlib.h>
 #include <string.h>
 
-#include "swap_Kutils.h"
+#include "swapSTD_Kutils.h"
+
+
+/* This file contains the standard swapping functions for the Kutils library (all the C default datatypes).
+ * If you are looking to add custom swapping functions, you can add them to "swapCST_Kutils.*" files.
+ */
 
 
 /* Standard swapping functions */
@@ -269,4 +274,4 @@ void binswapK(void *a, void *b, size_t datatype_size) {
 
 
 
-#endif
+#endif // SWAPSTD_KUTILS_C

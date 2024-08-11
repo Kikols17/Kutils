@@ -1,10 +1,10 @@
 # compile .DEBUG.c to test code in sort_Kutils.c and sort_Kutils.h
-debug: .DEBUG.c swap_Kutils.o
-	gcc -o swap_Kutils.DEBUG .DEBUG.c swap_Kutils.o
+debug: .DEBUG.c swapSTD_Kutils.o
+	gcc -o swapSTD_Kutils.DEBUG .DEBUG.c swapSTD_Kutils.o
 
 # compile .DEBUG.c to test code in sort_Kutils.c and sort_Kutils.h
-swap_Kutils.o: swap_Kutils.c swap_Kutils.h
-	gcc -c swap_Kutils.c -o swap_Kutils.o
+swapSTD_Kutils.o: swapSTD_Kutils.c swapSTD_Kutils.h
+	gcc -c swapSTD_Kutils.c -o swapSTD_Kutils.o
 
 # remove the executable file
 clean:
