@@ -1,10 +1,10 @@
 # compile .DEBUG.c to test code in sort_Kutils.c and sort_Kutils.h
-debug: .DEBUG.c cmp_Kutils.o
-	gcc -o cmp_Kutils.DEBUG .DEBUG.c cmp_Kutils.o
+debug: .DEBUG.c cmpSTD_Kutils.o
+	gcc -o cmpSTD_Kutils.DEBUG .DEBUG.c cmpSTD_Kutils.o
 
 # compile .DEBUG.c to test code in sort_Kutils.c and sort_Kutils.h
-swap_Kutils.o: cmp_Kutils.c cmp_Kutils.h
-	gcc -c cmp_Kutils.c -o cmp_Kutils.o
+cmpSTD_Kutils.o: cmpSTD_Kutils.c cmpSTD_Kutils.h
+	gcc -c cmpSTD_Kutils.c -o cmpSTD_Kutils.o
 
 # remove the executable file
 clean:
