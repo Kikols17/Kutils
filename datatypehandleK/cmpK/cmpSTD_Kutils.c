@@ -1,10 +1,15 @@
-#ifndef CMP_KUTILS_C
-#define CMP_KUTILS_C
+#ifndef CMPSTD_KUTILS_C
+#define CMPSTD_KUTILS_C
 
 #include <stdlib.h>
 #include <string.h>
 
-#include "cmp_Kutils.h"
+#include "cmpSTD_Kutils.h"
+
+
+/* This file contains the standard comparison functions for the Kutils library (all the C default datatypes).
+ * If you are looking to add custom comparison functions, you can add them to "cmpCST_Kutils.*" files.
+ */
 
 
 /* Standard comparison functions */
@@ -382,4 +387,4 @@ int bincmpK(const void *a, const void *b, size_t datatype_size) {
 
 
 
-#endif // CMP_KUTILS_C
+#endif // CMPSTD_KUTILS_C

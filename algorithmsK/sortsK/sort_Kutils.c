@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "sort_Kutils.h"
-#include "../../datatypehandleK/cmpK/cmp_Kutils.h"
+#include "../../datatypehandleK/cmpK/cmpSTD_Kutils.h"
 #include "../../datatypehandleK/swapK/swap_Kutils.h"
 
 
