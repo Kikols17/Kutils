@@ -382,4 +382,4 @@ int bincmpK(const void *a, const void *b, size_t datatype_size) {
 
 
 
-#endif
+#endif // CMP_KUTILS_C
