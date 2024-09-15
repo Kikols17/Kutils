@@ -3,6 +3,7 @@
 
 #include <string.h>
 
+#include "../../macro_Kutils.h"
 #include "sort_Kutils.h"
 #include "../../datatypehandleK/cmpK/cmpSTD_Kutils.h"
 #include "../../datatypehandleK/swapK/swapSTD_Kutils.h"
@@ -113,6 +114,7 @@ void insertsortK(void *begin, void *end, size_t datatype_size, int (*cmp)(const 
      *          swap: pointer to the swap function
      *
      */
+    UNUSED_K(swap);
     void *j;
     char key[datatype_size];
 

@@ -1,6 +1,8 @@
 #ifndef PAIR_KUTILS_C
 #define PAIR_KUTILS_C
 
+#include <string.h>
+
 #include "pair_Kutils.h"
 
 

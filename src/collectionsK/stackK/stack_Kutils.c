@@ -8,7 +8,7 @@
 
 
 
-stackK *stackK_init(size_t datatype_size, size_t capacity, int (*resize_func)(int, int)) {
+stackK *stackK_init(size_t datatype_size, size_t capacity, size_t (*resize_func)(size_t, size_t)) {
     /* Create a new stackK with the given datatype_size and capacity.
      *      INPUTS:
      *          -> datatype_size (size_t): size of the datatype in bytes

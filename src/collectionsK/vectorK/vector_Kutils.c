@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 
-vectorK *vectorK_init(size_t datatype_size, size_t capacity, int (*resize_func)(int, int)) {
+vectorK *vectorK_init(size_t datatype_size, size_t capacity, size_t (*resize_func)(size_t, size_t)) {
     /* Create a new vectorK with the given datatype_size and capacity.
      *      INPUTS:
      *          -> datatype_size (size_t): size of the datatype in bytes
@@ -185,8 +185,8 @@ void *vectorK_pushback(vectorK *v, void *element) {
      */
 
     // calculate the new capacity
-    int new_capacity = v->resize_func(v->size+1, v->dinarray->capacity);
-    if (new_capacity<0) {
+    size_t new_capacity = v->resize_func(v->size+1, v->dinarray->capacity);
+    if (new_capacity==0) {
         return NULL;
     }
 
@@ -218,8 +218,8 @@ void *vectorK_popback(vectorK *v) {
      */
 
     // calculate the new capacity
-    int new_capacity = v->resize_func(v->size-1, v->dinarray->capacity);
-    if ( new_capacity<0 ) {
+    size_t new_capacity = v->resize_func(v->size-1, v->dinarray->capacity);
+    if ( new_capacity==0 ) {
         return NULL;
     }
 
@@ -242,7 +242,7 @@ void *vectorK_popback(vectorK *v) {
 
 
 
-int vectorK_defresize(int new_size, int cur_capacity) {
+size_t vectorK_defresize(size_t new_size, size_t cur_capacity) {
     /* Default funtion for resizing the vector.
      * 
      * 
@@ -252,13 +252,13 @@ int vectorK_defresize(int new_size, int cur_capacity) {
      *          -> cur_capacity (int): value of the current capacity of the dinarray
      * 
      *      OUTPUT:
-     *          -> -1: impossible new_size/capacity setup
+     *          -> 0: impossible new_size/capacity setup
      *          -> n, n>-1: new capacity that the dinarrayK should have
      */
     
     // if the values are invalid, return -1
-    if (new_size<0 || cur_capacity<=0 || new_size-1>cur_capacity) {
-        return -1;
+    if (new_size==0 || cur_capacity==0 || new_size-1>cur_capacity) {
+        return 0;
     }
 
     // if the new_size does not fit inside the cur_capacity, double it
@@ -275,7 +275,7 @@ int vectorK_defresize(int new_size, int cur_capacity) {
     return cur_capacity;
 }
 
-int vectorK_tightresize(int new_size, int cur_capacity) {
+size_t vectorK_tightresize(size_t new_size, size_t cur_capacity) {
     /* Tight funtion for resizing the vector.
      *
      *
@@ -285,13 +285,13 @@ int vectorK_tightresize(int new_size, int cur_capacity) {
      *          -> cur_capacity (int): value of the current capacity of the dinarray
      *
      *      OUTPUT:
-     *          -> -1: impossible new_size/capacity setup
+     *          -> 0: impossible new_size/capacity setup
      *          -> n, n>-1: new capacity that the dinarrayK should have
      */
     
     // if the values are invalid, return -1
-    if (new_size<0 || cur_capacity<=0 || new_size-1>cur_capacity) {
-        return -1;
+    if (new_size==0 || cur_capacity==0 || new_size-1>cur_capacity) {
+        return 0;
     }
 
     // make sure that the new_capacity is never smaller than 1

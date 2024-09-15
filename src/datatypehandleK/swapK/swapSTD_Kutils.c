@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "swapSTD_Kutils.h"
+#include "../../macro_Kutils.h"
 
 
 /* This file contains the standard swapping functions for the Kutils library (all the C default datatypes).
@@ -26,6 +27,7 @@ void charswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     char temp = *(char *)a;
     *(char *)a = *(char *)b;
     *(char *)b = temp;
@@ -42,6 +44,7 @@ void scharswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     signed char temp = *(signed char *)a;
     *(signed char *)a = *(signed char *)b;
     *(signed char *)b = temp;
@@ -58,6 +61,7 @@ void ucharswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     unsigned char temp = *(unsigned char *)a;
     *(unsigned char *)a = *(unsigned char *)b;
     *(unsigned char *)b = temp;
@@ -78,6 +82,7 @@ void intswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     int temp = *(int *)a;
     *(int *)a = *(int *)b;
     *(int *)b = temp;
@@ -94,6 +99,7 @@ void shintswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     short int temp = *(short int *)a;
     *(short int *)a = *(short int *)b;
     *(short int *)b = temp;
@@ -110,6 +116,7 @@ void ushintswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     unsigned short int temp = *(unsigned short int *)a;
     *(unsigned short int *)a = *(unsigned short int *)b;
     *(unsigned short int *)b = temp;
@@ -126,6 +133,7 @@ void uintswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     unsigned int temp = *(unsigned int *)a;
     *(unsigned int *)a = *(unsigned int *)b;
     *(unsigned int *)b = temp;
@@ -142,6 +150,7 @@ void lintswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     long int temp = *(long int *)a;
     *(long int *)a = *(long int *)b;
     *(long int *)b = temp;
@@ -158,6 +167,7 @@ void ulintswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     unsigned long int temp = *(unsigned long int *)a;
     *(unsigned long int *)a = *(unsigned long int *)b;
     *(unsigned long int *)b = temp;
@@ -174,6 +184,7 @@ void llintswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     long long int temp = *(long long int *)a;
     *(long long int *)a = *(long long int *)b;
     *(long long int *)b = temp;
@@ -190,6 +201,7 @@ void ullintswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     unsigned long long int temp = *(unsigned long long int *)a;
     *(unsigned long long int *)a = *(unsigned long long int *)b;
     *(unsigned long long int *)b = temp;
@@ -210,6 +222,7 @@ void floatswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     float temp = *(float *)a;
     *(float *)a = *(float *)b;
     *(float *)b = temp;
@@ -230,6 +243,7 @@ void doubleswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     double temp = *(double *)a;
     *(double *)a = *(double *)b;
     *(double *)b = temp;
@@ -246,6 +260,7 @@ void ldoubleswapK(void *a, void *b, size_t datatype_size) {
      *          datatype_size: size of the memory locations
      *
      */
+    UNUSED_K(datatype_size);
     long double temp = *(long double *)a;
     *(long double *)a = *(long double *)b;
     *(long double *)b = temp;

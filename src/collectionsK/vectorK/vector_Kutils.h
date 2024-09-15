@@ -12,11 +12,11 @@
 typedef struct vectorK {
     dinarrayK* dinarray;    // pointer to the dinarrayK
     size_t size;            // size of the vector (number of elements it contains in its data) (must be <= than capacity)
-    int (*resize_func)(int, int);      // pointer to the function for resizing the dinarrayK
+    size_t (*resize_func)(size_t, size_t);      // pointer to the function for resizing the dinarrayK
 } vectorK;
 
 
-vectorK *vectorK_init(size_t datatype_size, size_t capacity, int (*resize_func)(int, int));
+vectorK *vectorK_init(size_t datatype_size, size_t capacity, size_t (*resize_func)(size_t, size_t));
 vectorK *vectorK_copy(vectorK *v);
 int vectorK_copyto(vectorK *dest, vectorK *src);
 
@@ -37,8 +37,8 @@ void *vectorK_popback(vectorK *v);
 
 
 
-int vectorK_defresize(int new_size, int cur_capacity);
-int vectorK_tightresize(int new_size, int cur_capacity);
+size_t vectorK_defresize(size_t new_size, size_t cur_capacity);
+size_t vectorK_tightresize(size_t new_size, size_t cur_capacity);
 
 
 

@@ -11,7 +11,7 @@ typedef struct stackK {
 
 
 
-stackK *stackK_init(size_t datatype_size, size_t capacity, int (*resize_func)(int, int));
+stackK *stackK_init(size_t datatype_size, size_t capacity, size_t (*resize_func)(size_t, size_t));
 stackK *stackK_copy(stackK *s);
 int stackK_copyto(stackK *dest, stackK *src);
 

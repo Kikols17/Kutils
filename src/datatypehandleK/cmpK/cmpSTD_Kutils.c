@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "cmpSTD_Kutils.h"
+#include "../../macro_Kutils.h"
 
 
 /* This file contains the standard comparison functions for the Kutils library (all the C default datatypes).
@@ -29,6 +30,7 @@ int charcmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first character is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(char *)a)<(*(char *)b)) + ((*(char *)a)>(*(char *)b));
     if (*(char *)a == *(char *)b) {
         return 0;
@@ -53,6 +55,7 @@ int scharcmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first signed character is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(signed char *)a)<(*(signed char *)b)) + ((*(signed char *)a)>(*(signed char *)b));
     if (*(signed char *)a == *(signed char *)b) {
         return 0;
@@ -77,6 +80,7 @@ int ucharcmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first unsigned character is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(unsigned char *)a)<(*(unsigned char *)b)) + ((*(unsigned char *)a)>(*(unsigned char *)b));
     if (*(unsigned char *)a == *(unsigned char *)b) {
         return 0;
@@ -105,6 +109,7 @@ int intcmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first integer is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(int *)a)<(*(int *)b)) + ((*(int *)a)>(*(int *)b));
     if (*(int *)a == *(int *)b) {
         return 0;
@@ -129,6 +134,7 @@ int shintcmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first short integer is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(short int *)a)<(*(short int *)b)) + ((*(short int *)a)>(*(short int *)b));
     if (*(short int *)a == *(short int *)b) {
         return 0;
@@ -153,6 +159,7 @@ int ushintcmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first unsigned short integer is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(unsigned short int *)a)<(*(unsigned short int *)b)) + ((*(unsigned short int *)a)>(*(unsigned short int *)b));
     if (*(unsigned short int *)a == *(unsigned short int *)b) {
         return 0;
@@ -177,6 +184,7 @@ int uintcmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first unsigned integer is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(unsigned int *)a)<(*(unsigned int *)b)) + ((*(unsigned int *)a)>(*(unsigned int *)b));
     if (*(unsigned int *)a == *(unsigned int *)b) {
         return 0;
@@ -201,6 +209,7 @@ int lintcmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first long integer is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(long int *)a)<(*(long int *)b)) + ((*(long int *)a)>(*(long int *)b));
     if (*(long int *)a == *(long int *)b) {
         return 0;
@@ -225,6 +234,7 @@ int ulintcmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first unsigned long integer is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(unsigned long int *)a)<(*(unsigned long int *)b)) + ((*(unsigned long int *)a)>(*(unsigned long int *)b));
     if (*(unsigned long int *)a == *(unsigned long int *)b) {
         return 0;
@@ -249,6 +259,7 @@ int llintcmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first long long integer is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(long long int *)a)<(*(long long int *)b)) + ((*(long long int *)a)>(*(long long int *)b));
     if (*(long long int *)a == *(long long int *)b) {
         return 0;
@@ -273,6 +284,7 @@ int ullintcmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first unsigned long long integer is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(unsigned long long int *)a)<(*(unsigned long long int *)b)) + ((*(unsigned long long int *)a)>(*(unsigned long long int *)b));
     if (*(unsigned long long int *)a == *(unsigned long long int *)b) {
         return 0;
@@ -301,6 +313,7 @@ int floatcmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first float is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(float *)a)<(*(float *)b)) + ((*(float *)a)>(*(float *)b));
     if (*(float *)a == *(float *)b) {
         return 0;
@@ -329,6 +342,7 @@ int doublecmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first double is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(double *)a)<(*(double *)b)) + ((*(double *)a)>(*(double *)b));
     if (*(double *)a == *(double *)b) {
         return 0;
@@ -353,6 +367,7 @@ int ldoublecmpK(const void *a, const void *b, size_t datatype_size) {
      *          1 if the first long double is greater than the second
      *
      */
+    UNUSED_K(datatype_size);
     //return -((*(long double *)a)<(*(long double *)b)) + ((*(long double *)a)>(*(long double *)b));
     if (*(long double *)a == *(long double *)b) {
         return 0;
