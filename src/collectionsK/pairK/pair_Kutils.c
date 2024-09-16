@@ -12,6 +12,8 @@ pairK *pairK_init(size_t first_datatype_size, size_t second_datatype_size, void 
      *      INPUTS:
      *          -> first_datatype_size (size_t): size of the first datatype in bytes
      *          -> second_datatype_size (size_t): size of the second datatype in bytes
+     *          -> first_cpy (void (*)(void *, const void *, size_t)): copy function for the first element
+     *          -> second_cpy (void (*)(void *, const void *, size_t)): copy function for the second element
      * 
      *      OUTPUT (pairK *):
      *          -> NULL: memory allocation fails
