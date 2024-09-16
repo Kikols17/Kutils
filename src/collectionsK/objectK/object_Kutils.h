@@ -7,6 +7,7 @@ typedef struct objectK {
     void *data;
     size_t datatype_size;
     void (*cpy)(void *dest, const void *src, size_t datatype_size);
+    int id;
 } objectK;
 
 

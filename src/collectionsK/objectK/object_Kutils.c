@@ -40,6 +40,8 @@ objectK *objectK_init(size_t datatype_size, void (*cpy)(void *dest, const void *
         new_object->cpy = cpy;
     }
 
+    new_object->id = -1;
+
     return new_object;
 }
 
