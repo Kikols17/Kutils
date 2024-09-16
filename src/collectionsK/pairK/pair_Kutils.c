@@ -1,12 +1,13 @@
 #ifndef PAIR_KUTILS_C
 #define PAIR_KUTILS_C
 
-#include <string.h>
+
+#include "../../datatypehandleK/cpyK/cpy_Kutils.h"
 
 #include "pair_Kutils.h"
 
 
-pairK *pairK_init(size_t first_datatype_size, size_t second_datatype_size) {
+pairK *pairK_init(size_t first_datatype_size, size_t second_datatype_size, void (*first_cpy)(void *dest, const void *src, size_t datatype_size), void (*second_cpy)(void *dest, const void *src, size_t datatype_size)) {
     /* Create a new pairK with the given first_datatype_size and second_datatype_size.
      *      INPUTS:
      *          -> first_datatype_size (size_t): size of the first datatype in bytes
@@ -42,6 +43,18 @@ pairK *pairK_init(size_t first_datatype_size, size_t second_datatype_size) {
     new_pair->first_datatype_size = first_datatype_size;
     new_pair->second_datatype_size = second_datatype_size;
 
+    // set copy functions
+    if (first_cpy == NULL) {
+        new_pair->first_cpy = bincpyK;
+    } else {
+        new_pair->first_cpy = first_cpy;
+    }
+    if (second_cpy == NULL) {
+        new_pair->second_cpy = bincpyK;
+    } else {
+        new_pair->second_cpy = second_cpy;
+    }
+
     return new_pair;
 }
 
@@ -56,7 +69,7 @@ pairK *pairK_copy(pairK *pair) {
      *
      */
     // initialize new_pair
-    pairK *new_pair = pairK_init(pair->first_datatype_size, pair->second_datatype_size);
+    pairK *new_pair = pairK_init(pair->first_datatype_size, pair->second_datatype_size, pair->first_cpy, pair->second_cpy);
     if (new_pair == NULL) {
         return NULL;
     }
@@ -87,8 +100,8 @@ int pairK_copyto(pairK *dest, pairK *src) {
     }
 
     // copy the elements
-    memcpy(dest->first, src->first, dest->first_datatype_size);
-    memcpy(dest->second, src->second, dest->second_datatype_size);
+    dest->first_cpy(dest->first, src->first, dest->first_datatype_size);
+    dest->second_cpy(dest->second, src->second, dest->second_datatype_size);
 
     return 0;
 }
@@ -120,10 +133,10 @@ void pairK_set(pairK *pair, void *first, void *second) {
      *
      */
     // set first
-    pairK_setfirst(pair, first);
+    pair->first_cpy(pair->first, first, pair->first_datatype_size);
 
     // set second
-    pairK_setsecond(pair, second);
+    pair->second_cpy(pair->second, second, pair->second_datatype_size);
 }
 
 void pairK_setfirst(pairK *pair, void *first) {
@@ -138,7 +151,7 @@ void pairK_setfirst(pairK *pair, void *first) {
      *
      */
     // set first
-    memcpy(pair->first, first, pair->first_datatype_size);
+    pair->first_cpy(pair->first, first, pair->first_datatype_size);
 }
 
 void pairK_setsecond(pairK *pair, void *second) {
@@ -153,7 +166,45 @@ void pairK_setsecond(pairK *pair, void *second) {
      *
      */
     // set second
-    memcpy(pair->second, second, pair->second_datatype_size);
+    pair->second_cpy(pair->second, second, pair->second_datatype_size);
+}
+
+
+void pairK_get(pairK *pair, void *first, void *second) {
+    /* Get the first and second elements of the pairK.
+     *      INPUTS:
+     *          -> pair (pairK *): pointer to the pairK
+     *          -> first (void *): pointer to the first element
+     *          -> second (void *): pointer to the second element
+     * 
+     */
+    // get first
+    pair->first_cpy(pair->first, first, pair->first_datatype_size);
+
+    // get second
+    pair->second_cpy(pair->second, second, pair->second_datatype_size);
+}
+
+void pairK_getfirst(pairK *pair, void *first) {
+    /* Get the first element of the pairK.
+     *      INPUTS:
+     *          -> pair (pairK *): pointer to the pairK
+     *          -> first (void *): pointer to the first element
+     * 
+     */
+    // get first
+    pair->first_cpy(pair->first, first, pair->first_datatype_size);
+}
+
+void pairK_getsecond(pairK *pair, void *second) {
+    /* Get the second element of the pairK.
+     *      INPUTS:
+     *          -> pair (pairK *): pointer to the pairK
+     *          -> second (void *): pointer to the second element
+     * 
+     */
+    // get second
+    pair->second_cpy(pair->second, second, pair->second_datatype_size);
 }
 
 
