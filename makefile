@@ -10,55 +10,61 @@ LIB_NAME = Kutils
 
 
 
+# get all the src c files
+SRC_CFILES = $(shell find src -type f -name "*.c")
 
-# get all dirs inside the /src directory and exclude the /src directory itself
+# get all the src h files
+SRC_HFILES = $(shell find src -type f -name "*.h")
+
+# get all the folders in src
 SRC_DIRS = $(shell find src -type d -not -path "src")
 
-# get all .c files inside the /src directory
-C_FILES = $(shell find src -type f -name "*.c")
-
-# get all .h files inside the /src directory
-H_FILES = $(shell find src -type f -name "*.h")
 
 
-# get all .o files that will be created from the .c and .h files
-O_FILES = $(C_FILES:src/%.c=build/%.o)
+# get all the build o files
+BUILD_OFILES = $(patsubst src/%.c, build/%.o, $(SRC_CFILES))
 
-# get all .so files that will be created from the .o files
-SO_FILES = $(O_FILES:.o=.so)
+# get all the build so files
+BUILD_SOFILES = $(patsubst build/%.o, build/%lib%.so, $(BUILD_OFILES))
+
+# get all the build h files
+BUILD_HFILES = $(SRC_HFILES:src/%=build/%)
+
+# get all the build folders
+BUILD_DIRS = $(SRC_DIRS:src/%=build/%)
 
 
 
 
 
-# default target
+# set target
 all: build
 
 
-# compile all files to .so
-build: setup_build $(O_FILES) $(SO_FILES) $(H_FILES:src/%=build/%)
-	# $(CC) -shared -fPIC -o build/l$(LIB_NAME).so $(O_FILES) -lc
+
+# setup the build directory, and mirror the src dirs structure
+build_setup:
+	mkdir -p build
+	$(foreach dir, $(BUILD_DIRS), mkdir -p $(dir);)
 
 
-# compile files to .o from .c files
-build/%.o: src/%.c src/%.h
-	$(CC) $(CFLAGS) -fPIC -c $< -o $@
 
-
-# compile files to .so from .o files without destroying the .o files
-build/%.so: build/%.o
-	$(CC) -shared -o $@ $< -lc
-
-
-# copy the .h files to the /build directory
+# create the headers in the build directory
 build/%.h: src/%.h
 	cp $< $@
 
+# create the object files in the build directory
+build/%.o: src/%.c build/%.h
+	$(CC) $(CFLAGS) -fPIC -c $< -o $@
 
-# create /build dir and mirror the directory structure of /src in /build
-setup_build: $(SRC_DIRS)
-	mkdir -p build
-	$(foreach dir, $(SRC_DIRS), mkdir -p build/$(dir:src/%=%);)
+# create the .so files in the build directory
+build/%lib%.so: build/%.o
+	$(CC) -shared -o $@ $<
+
+
+# compile all the source files
+build: build_setup $(BUILD_HFILES) $(BUILD_SOFILES)
+	# $(CC) -shared -o build/lib$(LIB_NAME).so $(BUILD_SOFILES)
 
 
 
