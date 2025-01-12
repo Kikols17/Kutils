@@ -1,52 +1,50 @@
-# use gcc as compiler
-CC = gcc
+SRC_DIR := src
+BIN_DIR := bin
+TARGET := $(BIN_DIR)/libmylibrary.so
 
-# enable all warnings
-CFLAGS = -Wall -Wextra -Werror
+# Find all source files in the src directory and its subdirectories
+SRCS := $(shell find $(SRC_DIR) -name '*.c')
+OBJS := $(patsubst $(SRC_DIR)/%.c,$(BIN_DIR)/%.o,$(SRCS))
 
+# Find all header files in the src directory and its subdirectories
+HEADERS := $(shell find $(SRC_DIR) -name '*.h')
 
-# name of the shared library
-LIB_NAME = Kutils
+CFLAGS := -fPIC -Wall -Wextra
+LDFLAGS := -shared
 
+all: $(TARGET) copy_headers
 
+$(TARGET): $(OBJS)
+	$(CC) $(LDFLAGS) -o $@ $(OBJS)
 
-# get all the src c files
-SRC_CFILES = $(shell find src -type f -name "*.c")
+# Create the necessary directories in bin/
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# get all the src h files
-SRC_HFILES = $(shell find src -type f -name "*.h")
+copy_headers: $(HEADERS)
+	@mkdir -p $(BIN_DIR)
+	cp $^ $(BIN_DIR)
 
-# get all the .so files that need to be created
-SO_FILES = $(patsubst src/%.c, build/%.so, $(SRC_CFILES))
+build: $(BIN_DIR)/$(file).o
 
-# get all the .o files that need to be created
-O_FILES = $(patsubst src/%.c, build/%.o, $(SRC_CFILES))
+$(BIN_DIR)/$(file).o: $(SRC_DIR)/$(file).c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
+.PHONY: all clean copy_headers build
+create_header: $(TARGET)
+	@echo "Creating header file for the library..."
+	@echo "#ifndef MYLIBRARY_H" > $(BIN_DIR)/mylibrary.h
+	@echo "#define MYLIBRARY_H" >> $(BIN_DIR)/mylibrary.h
+	@echo "" >> $(BIN_DIR)/mylibrary.h
+	@for header in $(HEADERS); do \
+		cat $$header >> $(BIN_DIR)/mylibrary.h; \
+		echo "" >> $(BIN_DIR)/mylibrary.h; \
+	done
+	@echo "#endif // MYLIBRARY_H" >> $(BIN_DIR)/mylibrary.h
 
+all: $(TARGET) copy_headers create_header
 
-
-
-# set target
-all: build
-
-
-# compile all the c files
-build/%.o: src/%.c src/%.h
-	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -fPIC -c $< -o $@
-	cp src/$*.h build/$*.h
-
-# turn .o files into shared libraries
-build/%.so: build/%.o
-	mkdir -p $(dir $@)
-	$(CC) -shared -o $@ $<
-
-# compile all files
-build: $(SO_FILES) $(O_FILES)
-	@echo "\033[0;32mAll files compiled\033[0m"
-
-
-
-# clean the build directory, and all its files
 clean:
-	rm -rf build
+	rm -rf $(BIN_DIR)
