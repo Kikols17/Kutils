@@ -4,7 +4,6 @@
 
 
 DEFINE_VECTORK(int);
-DEFINE_VECTORK(int);
 
 
 
