@@ -6,7 +6,7 @@ DEFINE_VECTORK(int)
 
 
 int main(int argc, char const *argv[]) {
-    long long int n = atoi(argv[1]);
+    long long int n = atoll(argv[1]);
 
     vectorK_int v;
     vectorK_int_init(&v, 1);

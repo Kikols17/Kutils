@@ -6,7 +6,7 @@ using namespace std;
 
 
 int main(int argc, char const *argv[]) {
-    long long int n = atoi(argv[1]);
+    long long int n = atoll(argv[1]);
 
     vector<int> vec = vector<int>();
 
