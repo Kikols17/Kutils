@@ -1,4 +1,5 @@
-bin
+bin_K
+bin_STD
 build
 
 *.exe
