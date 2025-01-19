@@ -8,9 +8,10 @@ CXX := g++
 CFLAGS := 
 CXXFLAGS := 
 
-all: run_tests
+all: speed_tests
 
-run_tests:
+# tests speed by running the STD and Kutils versions of the same test, and comparing
+speed_tests:
 	@for test in $(C_SOURCES:.c=); do \
 		echo "Running $$test:"; \
 		for input in `cat $$test.txt`; do \
@@ -24,6 +25,24 @@ run_tests:
 		done; \
 		echo "\n"; \
 	done
+	rm -f bin
+
+
+# tests the validity of the STD and Kutils versions of the same test and comparing outputs
+validity_tests:
+	@for test in $(C_SOURCES:.c=); do \
+		echo "Running $$test:"; \
+		for input in `cat $$test.txt`; do \
+			echo -n "\t$$input:\t"; \
+			$(CC) $(CFLAGS) -o bin $$test.c -I ../build/; \
+			./bin $$input > std_output.txt; \
+			$(CXX) $(CXXFLAGS) -o bin $$test.cpp; \
+			./bin $$input > kutils_output.txt; \
+			diff std_output.txt kutils_output.txt; \
+		done; \
+		echo "\n"; \
+	done
+	
 
 clean:
-	rm -f speed_tests/bin
+	rm -f bin
