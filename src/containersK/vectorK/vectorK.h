@@ -123,8 +123,6 @@
 
  */
 
-
-
 #define DEFINE_VECTORK(TYPE) \
   \
 typedef struct { \
@@ -207,6 +205,5 @@ bool vectorK_##TYPE##_empty(vectorK_##TYPE* vec) { \
 size_t vectorK_##TYPE##_size(vectorK_##TYPE* vec) { \
     return vec->size; \
 }
-
 
 #endif
