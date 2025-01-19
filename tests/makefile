@@ -25,7 +25,7 @@ speed_tests:
 		done; \
 		echo "\n"; \
 	done
-	rm -f bin
+	@rm -f bin
 
 
 # tests the validity of the STD and Kutils versions of the same test and comparing outputs
