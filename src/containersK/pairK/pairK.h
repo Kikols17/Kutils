@@ -4,19 +4,34 @@
 #include <stdlib.h>
 
 
-#define DEFINE_PAIRK(TYPE0, TYPE1) \
+// This is the template for pairK_<type0_type1>, and all its functions
+/*
+    pairK_<type0_type1>:
+        -> <type0> first            (first element of pairK)
+        -> <type1> second           (second element of pairK)
+
+
+
+
+
+    pairK_<type0_type1> pairK_<type0_type1>_makepair(<type0> first, <type1> second):
+        Returns a pairK with the given values.
+
+        -> <type0> first            (first element of pairK)
+        -> <type1> second           (second element of pairK)
+        -> RETURN   pairK_<type0_type1>
+
+*/
+
+#define DEFINE_PAIRK(TYPE0, TYPE1, TYPENAME) \
   \
 typedef struct { \
   TYPE0 first; \
   TYPE1 second; \
-}pairK_##TYPE0##_##TYPE1; \
+}pairK_##TYPENAME; \
   \
-void pairK_##TYPE0##_##TYPE1##_init(pairK_##TYPE0##_##TYPE1 *pair, TYPE0 init_first, TYPE1 init_second) { \
-    pair->first = init_first; \
-    pair->second = init_second; \
-} \
-pairK_##TYPE0##_##TYPE1 pairK_##TYPE0##_##TYPE1##_make_pair(TYPE0 first, TYPE1 second) { \
-    pairK_##TYPE0##_##TYPE1 pair; \
+pairK_##TYPENAME pairK_##TYPENAME##_makepair(TYPE0 first, TYPE1 second) { \
+    pairK_##TYPENAME pair; \
     pair.first = first; \
     pair.second = second; \
     return pair; \

@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "pairK.h"
 
-DEFINE_PAIRK(int, char)
+DEFINE_PAIRK(int, char, int_char)
 
 
 int main(int argc, const char* argv[]) {
@@ -10,7 +10,7 @@ int main(int argc, const char* argv[]) {
 
     pairK_int_char p;
     for (long long int i=0; i<n; i++) {
-        p = pairK_int_char_make_pair(0, 'c');
+        p = pairK_int_char_makepair(0, 'c');
     }
 
 
