@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "vectorK.h"
 
-DEFINE_VECTORK(int)
+DEFINE_VECTORK(int, int)
 
 
 

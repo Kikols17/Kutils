@@ -123,21 +123,21 @@
 
  */
 
-#define DEFINE_VECTORK(TYPE) \
+#define DEFINE_VECTORK(TYPE, TYPENAME) \
   \
 typedef struct { \
     TYPE* data; \
     size_t size; \
     size_t capacity; \
-}vectorK_##TYPE; \
+}vectorK_##TYPENAME; \
   \
-void vectorK_##TYPE##_init(vectorK_##TYPE* vec, size_t initial_capacity) { \
+void vectorK_##TYPENAME##_init(vectorK_##TYPENAME* vec, size_t initial_capacity) { \
     vec->data = (TYPE*)malloc(initial_capacity * sizeof(TYPE)); \
     vec->size = 0; \
     vec->capacity = initial_capacity; \
 } \
   \
-void vectorK_##TYPE##_free(vectorK_##TYPE* vec) { \
+void vectorK_##TYPENAME##_free(vectorK_##TYPENAME* vec) { \
     free(vec->data); \
     vec->data = NULL; \
     vec->size = 0; \
@@ -148,7 +148,7 @@ void vectorK_##TYPE##_free(vectorK_##TYPE* vec) { \
   \
   \
   \
-void vectorK_##TYPE##_pushback(vectorK_##TYPE* vec, TYPE element) { \
+void vectorK_##TYPENAME##_pushback(vectorK_##TYPENAME* vec, TYPE element) { \
     if (vec->size == vec->capacity) { \
         vec->capacity *= 2; \
         vec->data = (TYPE*)realloc(vec->data, vec->capacity * sizeof(TYPE)); \
@@ -156,11 +156,11 @@ void vectorK_##TYPE##_pushback(vectorK_##TYPE* vec, TYPE element) { \
     vec->data[vec->size++] = element; \
 } \
   \
-void vectorK_##TYPE##_popback(vectorK_##TYPE* vec) { \
+void vectorK_##TYPENAME##_popback(vectorK_##TYPENAME* vec) { \
     vec->size--; \
 } \
   \
-void vectorK_##TYPE##_tightresize(vectorK_##TYPE* vec) { \
+void vectorK_##TYPENAME##_tightresize(vectorK_##TYPENAME* vec) { \
     size_t new_capacity = 1; \
     while (new_capacity < vec->size) { \
             new_capacity *= 2; \
@@ -169,7 +169,7 @@ void vectorK_##TYPE##_tightresize(vectorK_##TYPE* vec) { \
     vec->data = (TYPE*)realloc(vec->data, vec->capacity * sizeof(TYPE)); \
 } \
   \
-void vectorK_##TYPE##_reserve(vectorK_##TYPE* vec, size_t new_capacity) { \
+void vectorK_##TYPENAME##_reserve(vectorK_##TYPENAME* vec, size_t new_capacity) { \
     vec->capacity = new_capacity; \
     vec->data = (TYPE*)realloc(vec->data, vec->capacity * sizeof(TYPE)); \
 } \
@@ -178,11 +178,11 @@ void vectorK_##TYPE##_reserve(vectorK_##TYPE* vec, size_t new_capacity) { \
   \
   \
   \
-void vectorK_##TYPE##_set(vectorK_##TYPE* vec, size_t index, TYPE element) { \
+void vectorK_##TYPENAME##_set(vectorK_##TYPENAME* vec, size_t index, TYPE element) { \
     vec->data[index] = element; \
 } \
   \
-TYPE vectorK_##TYPE##_get(vectorK_##TYPE* vec, size_t index) { \
+TYPE vectorK_##TYPENAME##_get(vectorK_##TYPENAME* vec, size_t index) { \
     return vec->data[index]; \
 } \
   \
@@ -190,19 +190,19 @@ TYPE vectorK_##TYPE##_get(vectorK_##TYPE* vec, size_t index) { \
   \
   \
   \
-TYPE *vectorK_##TYPE##_begin(vectorK_##TYPE* vec) { \
+TYPE *vectorK_##TYPENAME##_begin(vectorK_##TYPENAME* vec) { \
     return vec->data; \
 } \
   \
-TYPE *vectorK_##TYPE##_end(vectorK_##TYPE* vec) { \
+TYPE *vectorK_##TYPENAME##_end(vectorK_##TYPENAME* vec) { \
     return vec->data+vec->size; \
 } \
   \
-bool vectorK_##TYPE##_empty(vectorK_##TYPE* vec) { \
+bool vectorK_##TYPENAME##_empty(vectorK_##TYPENAME* vec) { \
     return vec->size==0; \
 } \
   \
-size_t vectorK_##TYPE##_size(vectorK_##TYPE* vec) { \
+size_t vectorK_##TYPENAME##_size(vectorK_##TYPENAME* vec) { \
     return vec->size; \
 }
 
