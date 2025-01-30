@@ -24,7 +24,7 @@ def speed_tests(prefix : str):
         cpp_version = os.path.exists(f"speed_tests/{base_name}.cpp")
 
         if not c_version or not cpp_version:
-            print(f"Test \"{base_name}\" does not have a C or C++ version")
+            print(f"\tTest \"{base_name}\" missing C or C++ version")
             continue
 
         # compile the tests
@@ -71,7 +71,7 @@ def valid_tests(prefix : str):
         cpp_version = os.path.exists(f"valid_tests/{base_name}.cpp")
 
         if not c_version or not cpp_version:
-            print(f"Test \"{base_name}\" does not have a C or C++ version")
+            print(f"\tTest \"{base_name}\" missing C and/or C++ version\n")
             continue
 
         # compile the tests
@@ -105,6 +105,7 @@ def valid_tests(prefix : str):
 
                 os.remove("result_K.txt")
                 os.remove("result_STD.txt")
+            print()
     print("\n")
     pass
 
