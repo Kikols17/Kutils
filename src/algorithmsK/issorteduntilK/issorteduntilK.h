@@ -16,8 +16,9 @@
 
 
     <type>* issorteduntilK_<type>(<type>* begin, <type>* end):
-        Iteratively checks if a range that starts at "begin" and who's last element is the one before "end"
-        is sorted according to the COMPARE macro.
+        Iteratively checks a range that starts at "begin" and who's last element is the one before "end"
+        for the first unsorted  element according to the COMPARE macro, returning a pointer to the first
+        outlier, or "end" if all is sorted.
         If you want to check if a range is sorted, simply use the same COMPARE that you would use to sort it.
 
         -> <type> begin     (pointer to the first element of the array [ ex: array[0] ])
