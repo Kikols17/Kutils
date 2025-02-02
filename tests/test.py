@@ -46,7 +46,6 @@ def speed_tests(prefix : str):
                 print(f"\t{result_K} - {result_STD}")
             print()
     os.system("rm bin_K bin_STD")
-    print("\n\n")
 
 
 
@@ -106,8 +105,7 @@ def valid_tests(prefix : str):
                 os.remove("result_K.txt")
                 os.remove("result_STD.txt")
             print()
-    print("\n")
-    pass
+    os.system("rm bin_K bin_STD")
 
 
 
