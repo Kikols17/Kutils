@@ -29,7 +29,7 @@
 #define DEFINE_QUICKSORTK(TYPE, TYPENAME, COMPARE) \
     \
 void quicksortK_##TYPENAME(TYPE* begin, TYPE* end) { \
-    TYPE** stack = (TYPE**)malloc((end-begin)*sizeof(TYPE*)); \
+    TYPE** stack = (TYPE**)malloc((end-begin)*sizeof(TYPE*)+((end-begin)%2)); \
     TYPE** top = stack; \
     *top++ = begin; \
     *top++ = end; \
