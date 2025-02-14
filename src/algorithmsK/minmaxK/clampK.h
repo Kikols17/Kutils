@@ -3,16 +3,32 @@
 
 // This is the macro for the "CLAMPK" macro
 /*
-    CLAMPK(a, b, c):
-        This macro returns the value of "a" clamped between "b" and "c".
+    CLAMPK(a, min, max):
+        This macro returns the value of "a" clamped between "min" and "max".
         This works for all types that support the "<" and ">" operators [ ex: int, float, double, char ]
         -> a             (value to clamp)
-        -> b             (minimum value)
-        -> c             (maximum value)
-        -> return        (the value of "a" clamped between "b" and "c")
+        -> min           (minimum value)
+        -> max           (maximum value)
+        -> return        (the value of "a" clamped between "min" and "max")
+
+    CLAMPK_MAX(a, max):
+        This macro returns the value of "a" clamped between "-infinity" and "max".
+        This works for all types that support the "<" operator [ ex: int, float, double, char ]
+        -> a             (value to clamp)
+        -> max           (maximum value)
+        -> return        (the value of "a" clamped between "-infinity" and "max")
+
+    CLAMPK_MIN(a, min):
+        This macro returns the value of "a" clamped between "min" and "+infinity".
+        This works for all types that support the ">" operator [ ex: int, float, double, char ]
+        -> a             (value to clamp)
+        -> min           (minimum value)
+        -> return        (the value of "a" clamped between "min" and "+infinity")
 
  */
 
-#define CLAMPK(a, b, c) ( (a<b) ? b:((a>c) ? (c:a)) )
+#define CLAMPK(a, min, max) ( (a<min) ? min:((a>max) ? (max:a)) )
+#define CLAMPK_MAX(a, max) ( (a>max) ? max:a )
+#define CLAMPK_MIN(a, min) ( (a<min) ? min:a )
 
 #endif
