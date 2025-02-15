@@ -22,10 +22,10 @@
 
 #define DEFINE_MINELEMENTK(TYPE, TYPENAME) \
   \
-TYPE minelementK_##TYPENAME(TYPE* begin, TYPE* end) { \
-    TYPE min = *begin; \
+TYPE* minelementK_##TYPENAME(TYPE* begin, TYPE* end) { \
+    TYPE* min = begin; \
     while (++begin!=end) { \
-        min = min < *begin ? min : *begin; \
+        min = *min<*begin ? min:begin; \
     } \
     return min; \
 }
