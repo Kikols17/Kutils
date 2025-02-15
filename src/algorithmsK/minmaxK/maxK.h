@@ -12,6 +12,6 @@
 
  */
 
-#define MAXK(a, b) ((a>b) ? (a:b))
+#define MAXK(a, b) (a>b ? a:b)
 
 #endif
