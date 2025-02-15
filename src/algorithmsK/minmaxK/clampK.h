@@ -29,8 +29,8 @@
 
  */
 
-#define CLAMPK(a, min, max) ( (a<min) ? min:((a>max) ? (max:a)) )
-#define CLAMPMAXK(a, max) ( (a>max) ? max:a )
-#define CLAMPMINK(a, min) ( (a<min) ? min:a )
+#define CLAMPK(a, min, max) ( a<min ? min:(a>max ? max:a) )
+#define CLAMPMAXK(a, max) ( a>max ? max:a )
+#define CLAMPMINK(a, min) ( a<min ? min:a )
 
 #endif
