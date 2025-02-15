@@ -13,6 +13,6 @@
 
  */
 
-#define MINMAXK(a, b, min, max) (min = (a<b)?(a:b), max = (a>b)?(a:b))
+#define MINMAXK(a, b, min, max) (min = a<b?a:b, max = a>b?a:b)
 
 #endif
