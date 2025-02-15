@@ -25,7 +25,7 @@
 TYPE maxelementK_##TYPENAME(TYPE* begin, TYPE* end) { \
     TYPE max = *begin; \
     while (++begin!=end) { \
-        max = max > *begin ? max : *begin; \
+        max = max>*begin ? max:*begin; \
     } \
     return max; \
 }
