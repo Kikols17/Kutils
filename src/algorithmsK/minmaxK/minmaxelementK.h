@@ -24,11 +24,37 @@
 #define DEFINE_MINMAXELEMENTK(TYPE, TYPENAME) \
   \
 void minmaxelementK_##TYPENAME(TYPE* begin, TYPE* end, TYPE** min, TYPE** max) { \
-    *min = *max = *begin; \
-    while (++begin!=end) { \
-        min = *min<*begin ? min:begin; \
-        max = *max>*begin ? max:begin; \
+    TYPE *min_temp, *max_temp; \
+    min_temp = max_temp = begin; \
+    while (++begin != end) { \
+        TYPE* i = begin; \
+        if (++begin == end) { \
+            if (*i<*min_temp) { \
+                min_temp = i; \
+            } else if (*i>=*max_temp) { \
+                max_temp = i; \
+            } \
+            break; \
+        } else { \
+            if (*begin<*i) { \
+                if (*begin<*min_temp) { \
+                    min_temp = begin; \
+                } \
+                if (*i>=*max_temp) { \
+                    max_temp = i; \
+                } \
+            } else { \
+                if (*i<*min_temp) { \
+                    min_temp = i; \
+                } \
+                if (*begin>=*max_temp) { \
+                    max_temp = begin; \
+                } \
+            } \
+        } \
     } \
+    *min = min_temp; \
+    *max = max_temp; \
 }
 
 #endif
