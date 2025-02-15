@@ -23,11 +23,11 @@
 
 #define DEFINE_MINMAXELEMENTK(TYPE, TYPENAME) \
   \
-void minmaxelementK_##TYPENAME(TYPE* begin, TYPE* end, TYPE* min, TYPE* max) { \
+void minmaxelementK_##TYPENAME(TYPE* begin, TYPE* end, TYPE** min, TYPE** max) { \
     *min = *max = *begin; \
     while (++begin!=end) { \
-        *min = *min < *begin ? *min : *begin; \
-        *max = *max > *begin ? *max : *begin; \
+        min = *min<*begin ? min:begin; \
+        max = *max>*begin ? max:begin; \
     } \
 }
 
