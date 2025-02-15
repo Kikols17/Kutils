@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
         array[i] = rand();
     }
 
-    int* max = minelementK_int(&array[0], &array[n]);
+    int* min = minelementK_int(&array[0], &array[n]);
 
     return 0;
 }

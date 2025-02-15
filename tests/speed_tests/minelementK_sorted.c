@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "minmaxK.h"
 
-DEFINE_MAXELEMENTK(long long int, llint)
+DEFINE_MINELEMENTK(long long int, llint)
 
 int main(int argc, char* argv[]) {
     int n = atoi(argv[1]);
@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
         array[i] = i;
     }
 
-    long long int* max = maxelementK_llint(&array[0], &array[n]);
+    long long int* min = minelementK_llint(&array[0], &array[n]);
 
     return 0;
 }

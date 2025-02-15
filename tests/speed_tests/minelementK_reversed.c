@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
         array[i] = n-i;
     }
 
-    long long int* max = minelementK_llint(&array[0], &array[n]);
+    long long int* min = minelementK_llint(&array[0], &array[n]);
 
     return 0;
 }
