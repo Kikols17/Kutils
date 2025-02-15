@@ -12,6 +12,6 @@
 
  */
 
-#define MINK(a, b) ((a<b) ? (a:b))
+#define MINK(a, b) (a<b ? a:b)
 
 #endif
