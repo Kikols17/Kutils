@@ -14,6 +14,5 @@ int main(int argc, char* argv[]) {
 
     long long int* max = maxelementK_llint(&array[0], &array[n]);
 
-
     return 0;
 }
