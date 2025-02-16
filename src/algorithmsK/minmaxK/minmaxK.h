@@ -6,10 +6,10 @@
     MINMAXK(a, b):
         This macro returns the smaller and greater of the two numbers.
         This works for all types that support the "<" and ">" operators [ ex: int, float, double, char ]
-        -> a             (first number)
-        -> b             (second number)
-        -> min           (variable where to store the smallest of the two numbers)
-        -> max           (variable where to store the greater of the two numbers)
+        -> a            (first number)
+        -> b            (second number)
+        -> min          (variable where to store the smallest of the two numbers)
+        -> max          (variable where to store the greater of the two numbers)
 
  */
 

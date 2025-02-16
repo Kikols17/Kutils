@@ -6,9 +6,9 @@
     MAXK(a, b):
         This macro returns the greater of the two numbers.
         This works for all types that support the ">" operator [ ex: int, float, double, char ]
-        -> a             (first number)
-        -> b             (second number)
-        -> return        (the greater of the two numbers)
+        -> a            (first number)
+        -> b            (second number)
+        -> return       (the greater of the two numbers)
 
  */
 
