@@ -29,7 +29,7 @@
 TYPE* upperboundK_##TYPENAME(TYPE* begin, TYPE* end, TYPE value) { \
     size_t count = end-begin; \
     while (count!=0) { \
-        size_t step = count>>1; \
+        size_t step = count/2; \
         TYPE* mid = begin+step; \
         if (COMPARE(*mid, value)) { \
             count = step; \
