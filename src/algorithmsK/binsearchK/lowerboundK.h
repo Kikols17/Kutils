@@ -31,7 +31,7 @@ TYPE* lowerboundK_##TYPENAME(TYPE* begin, TYPE* end, TYPE value) { \
     while (count!=0) { \
         size_t step = count>>1; \
         TYPE* mid = begin+step; \
-        if (COMPARE(*mid, value)) { \
+        if (COMPARE(value, *mid)) { \
             begin = ++mid; \
             count -= step+1; \
         } else { \

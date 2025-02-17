@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "binsearchK.h"
 
-#define MY_COMPARE(a, b) ( (a) < (b) )
+#define MY_COMPARE(a, b) ((a) > (b))
 DEFINE_LOWERBOUNDK(int, int, MY_COMPARE)
 
 int main(int argc, char* argv[]) {
