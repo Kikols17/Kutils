@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "binsearchK.h"
 
 #define MY_COMPARE(a, b) ( (a) > (b) )
@@ -13,7 +14,13 @@ int main(int argc, char* argv[]) {
         array[i] = 0;
     }
 
-    int* p = lowerboundK_int(&array[0], &array[n], 0);
+    clock_t start = clock();
+    for (int i=0; i<5; ++i) {
+        int* p = lowerboundK_int(&array[0], &array[n], 0);
+    }
+    clock_t end = clock();
+    double time = (double)(end-start)/CLOCKS_PER_SEC;
+    printf("%fs", time);
 
     free(array);
 
