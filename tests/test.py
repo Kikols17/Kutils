@@ -41,8 +41,8 @@ def speed_tests(prefix : str):
 
                 # run the tests
                 print(f"\t\t{line}:", end="")
-                result_K = os.popen(f"time -p ./bin_K {line} 2>&1 | grep real | awk '{{print $2 \"s\"}}' | tr -d '\n';").read()
-                result_STD = os.popen(f"time -p ./bin_STD {line} 2>&1 | grep real | awk '{{print $2 \"s\"}}' | tr -d '\n';").read()
+                result_K = os.popen(f"./bin_K {line}").read()
+                result_STD = os.popen(f"./bin_STD {line}").read()
                 print(f"\t{result_K} - {result_STD}")
             print()
     os.system("rm bin_K bin_STD")
