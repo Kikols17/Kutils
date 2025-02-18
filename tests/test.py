@@ -1,6 +1,7 @@
 import sys
 import os
 import time
+import subprocess
 
 CC = "gcc"
 GCC = "g++"
@@ -41,9 +42,14 @@ def speed_tests(prefix : str):
 
                 # run the tests
                 print(f"\t\t{line}:", end="")
-                result_K = os.popen(f"./bin_K {line}").read()
-                result_STD = os.popen(f"./bin_STD {line}").read()
+                process_K = subprocess.Popen(f"./bin_K {line}", shell=True, stdout=subprocess.PIPE)
+                process_STD = subprocess.Popen(f"./bin_STD {line}", shell=True, stdout=subprocess.PIPE)
+                result_K, _ = process_K.communicate()
+                result_STD, _ = process_STD.communicate()
+                result_K = result_K.decode('utf-8')
+                result_STD = result_STD.decode('utf-8')
                 print(f"\t{result_K} - {result_STD}")
+
             print()
         sys.stdout.flush()
     os.system("rm bin_K bin_STD")
@@ -88,8 +94,12 @@ def valid_tests(prefix : str):
 
                 # run the tests
                 print(f"\t\t{line}:", end="")
-                result_K = os.popen(f"./bin_K {line}").read()
-                result_STD = os.popen(f"./bin_STD {line}").read()
+                process_K = subprocess.Popen(f"./bin_K {line}", shell=True, stdout=subprocess.PIPE)
+                process_STD = subprocess.Popen(f"./bin_STD {line}", shell=True, stdout=subprocess.PIPE)
+                result_K, _ = process_K.communicate()
+                result_STD, _ = process_STD.communicate()
+                result_K = result_K.decode('utf-8')
+                result_STD = result_STD.decode('utf-8')
                 with open("result_K.txt", "w") as f1, open("result_STD.txt", "w") as f2:
                     f1.write(result_K)
                     f2.write(result_STD)
