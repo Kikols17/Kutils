@@ -45,6 +45,7 @@ def speed_tests(prefix : str):
                 result_STD = os.popen(f"./bin_STD {line}").read()
                 print(f"\t{result_K} - {result_STD}")
             print()
+        sys.stdout.flush()
     os.system("rm bin_K bin_STD")
 
 
@@ -105,6 +106,7 @@ def valid_tests(prefix : str):
                 os.remove("result_K.txt")
                 os.remove("result_STD.txt")
             print()
+        sys.stdout.flush()
     os.system("rm bin_K bin_STD")
 
 
