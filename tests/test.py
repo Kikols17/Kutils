@@ -116,6 +116,11 @@ def valid_tests(prefix : str):
 
 if __name__ == '__main__':
     # check if there are any arguments
+    print("\033[92mMachine:\033[0m " + os.popen("uname -a").read())
+    cpu_info = os.popen("lscpu | grep 'Model name\\|MHz\\|Address sizes\\|cache'").read().replace("\n", "\n\t")
+    print("\033[92mCPU:\033[0m\n\t" + cpu_info, end='\n\n\n')
+    print("\033[91mC Compiler:\033[0m " + os.popen(f"{CC} --version").read(), end='')
+    print("\033[91mC++ Compiler:\033[0m " + os.popen(f"{GCC} --version").read(), end='\n\n')
     if len(sys.argv)>1:
         if (sys.argv[1] == "-s"):
             if len(sys.argv)==3:
