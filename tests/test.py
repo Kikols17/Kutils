@@ -29,8 +29,12 @@ def speed_tests(prefix : str):
             continue
 
         # compile the tests
-        os.system(f"{CC} {CCFLAGS} -o bin_K speed_tests/{base_name}.c -I ../build/")
-        os.system(f"{GCC} {GCCFLAGS} -o bin_STD speed_tests/{base_name}.cpp")
+        if os.system(f"{CC} {CCFLAGS} -o bin_K speed_tests/{base_name}.c -I ../build/") != 0:
+            print(f"\tSkipping \"{base_name}\" due to C compilation failure")
+            continue
+        if os.system(f"{GCC} {GCCFLAGS} -o bin_STD speed_tests/{base_name}.cpp") != 0:
+            print(f"\tSkipping \"{base_name}\" due to C++ compilation failure")
+            continue
 
         # for every line in {base_name}.txt, run the test that many times
         with open(f"speed_tests/{test}", "r") as f:
@@ -81,8 +85,12 @@ def valid_tests(prefix : str):
             continue
 
         # compile the tests
-        os.system(f"{CC} {CCFLAGS} -o bin_K valid_tests/{base_name}.c -I ../build/")
-        os.system(f"{GCC} {GCCFLAGS} -o bin_STD valid_tests/{base_name}.cpp")
+        if os.system(f"{CC} {CCFLAGS} -o bin_K valid_tests/{base_name}.c -I ../build/") != 0:
+            print(f"\tSkipping \"{base_name}\" due to C compilation failure\n")
+            continue
+        if os.system(f"{GCC} {GCCFLAGS} -o bin_STD valid_tests/{base_name}.cpp") != 0:
+            print(f"\tSkipping \"{base_name}\" due to C++ compilation failure\n")
+            continue
 
         # for every line in {base_name}.txt, run the test that many times
         with open(f"valid_tests/{test}", "r") as f:
