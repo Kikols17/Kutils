@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include "countK.h"
+#include "nonmodseqopK.h"
 
 DEFINE_COUNTK(int, int)
 

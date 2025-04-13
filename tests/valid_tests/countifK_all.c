@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "countifK.h"
+#include "nonmodseqopK.h"
 
 
 #define MY_CONDITION(x) (*(x) >= 5)
