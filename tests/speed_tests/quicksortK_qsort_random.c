@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "sortsK.h"
+#include "sortK.h"
 
 
 #define MY_COMPARE(a, b) ((a) > (b))

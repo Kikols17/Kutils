@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "vectorK.h"
-#include "sortsK.h"
+#include "sortK.h"
 
 
 #define MY_COMPARE(a, b) ((a) > (b))
