@@ -29,27 +29,41 @@
 #define DEFINE_MERGEK(TYPE, TYPENAME, COMPARE) \
     \
 TYPE* mergeK_##TYPENAME(TYPE* begin1, TYPE* end1, TYPE* begin2, TYPE* end2, TYPE* output) { \
-    while (begin1 != end1 && begin2 != end2) { \
-        if (COMPARE(*begin1, *begin2)) { \
+    if (COMPARE(*(end2-1), *(end1-1))) { \
+        while (begin1 != end1) { \
+            if (COMPARE(*begin1, *begin2)) { \
+                *output = *begin2; \
+                ++begin2; \
+            } else { \
+                *output = *begin1; \
+                ++begin1; \
+            } \
+            ++output; \
+        } \
+        while (begin2 != end2) { \
             *output = *begin2; \
             ++begin2; \
-        } else { \
+            ++output; \
+        } \
+        return output; \
+    } else { \
+        while (begin2 != end2) { \
+            if (COMPARE(*begin2, *begin1)) { \
+                *output = *begin1; \
+                ++begin1; \
+            } else { \
+                *output = *begin2; \
+                ++begin2; \
+            } \
+            ++output; \
+        } \
+        while (begin1 != end1) { \
             *output = *begin1; \
             ++begin1; \
+            ++output; \
         } \
-        ++output; \
+        return output; \
     } \
-    while (begin1 != end1) { \
-        *output = *begin1; \
-        ++begin1; \
-        ++output; \
-    } \
-    while (begin2 != end2) { \
-        *output = *begin2; \
-        ++begin2; \
-        ++output; \
-    } \
-    return output; \
 }
 
 #endif
