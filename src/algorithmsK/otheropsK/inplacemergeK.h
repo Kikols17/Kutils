@@ -26,23 +26,68 @@
 
 #define DEFINE_INPLACEMERGEK(TYPE, TYPENAME, COMPARE) \
     \
-void inplacemergeK_##TYPENAME(TYPE* begin, TYPE* mid, TYPE* end) { \
-    TYPE* left = begin; \
-    TYPE* right = mid; \
-    while (left < mid && right < end) { \
-        if (COMPARE(*right, *left)) { \
-            left++; \
-        } else { \
-            TYPE temp = *right; \
-            TYPE* p = right; \
-            while (p > left) { \
-                *p = *(p - 1); \
-                p--; \
+void inplacemergeheapK_##TYPENAME(TYPE* begin, TYPE* mid, TYPE* end) { \
+    size_t n1 = mid - begin; \
+    TYPE* temp = (TYPE*)malloc(n1*sizeof(TYPE)); \
+    for (size_t i=0; i<n1; ++i) { \
+        temp[i] = begin[i]; \
+    } \
+    TYPE* left = temp; \
+    TYPE* left_end = temp+n1; \
+    if (COMPARE(*(end-1), *(mid-1))) { \
+        while (left < left_end) { \
+            if (COMPARE(*mid, *left)) { \
+                *begin++ = *left++; \
+            } else { \
+                *begin++ = *mid++; \
             } \
-            *left = temp; \
-            left++; \
-            mid++; \
-            right++; \
+        } \
+        /* No remaining elements in the right subarray, no need to copy */ \
+    } else { \
+        while (mid < end) { \
+            if (COMPARE(*left, *mid)) { \
+                *begin++ = *mid++; \
+            } else { \
+                *begin++ = *left++; \
+            } \
+        } \
+        /* Only copy remaining elements from the left subarray */ \
+        while (left < left_end) { \
+            *begin++ = *left++; \
+        } \
+    } \
+    free(temp); \
+} \
+    \
+    \
+void inplacemergestackK_##TYPENAME(TYPE* begin, TYPE* mid, TYPE* end) { \
+    size_t n1 = mid - begin; \
+    TYPE temp[n1]; \
+    for (size_t i=0; i<n1; ++i) { \
+        temp[i] = begin[i]; \
+    } \
+    TYPE* left = temp; \
+    TYPE* left_end = temp+n1; \
+    if (COMPARE(*(end-1), *(mid-1))) { \
+        while (left < left_end) { \
+            if (COMPARE(*mid, *left)) { \
+                *begin++ = *left++; \
+            } else { \
+                *begin++ = *mid++; \
+            } \
+        } \
+        /* No remaining elements in the right subarray, no need to copy */ \
+    } else { \
+        while (mid < end) { \
+            if (COMPARE(*left, *mid)) { \
+                *begin++ = *mid++; \
+            } else { \
+                *begin++ = *left++; \
+            } \
+        } \
+        /* Only copy remaining elements from the left subarray */ \
+        while (left < left_end) { \
+            *begin++ = *left++; \
         } \
     } \
 }
