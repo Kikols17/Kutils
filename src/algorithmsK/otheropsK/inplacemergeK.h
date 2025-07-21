@@ -5,7 +5,7 @@
 /*
     DEFINE_INPLACEMERGEK(TYPE, TYPENAME, COMPARE)
         -> TYPE         (type [ ex: int ])
-        -> TYPENAME     (name that created function will take [ ex: int -> inplacemergeK_int(...) ])
+        -> TYPENAME     (name that created function will take [ ex: int -> inplacemergeheapK_int(...) ])
         -> COMPARE      (comparison function [ ex: ( (a) < (b) ) ])
 
 
@@ -13,14 +13,32 @@
 
 
 
-    TYPE* inplacemergeK_<type>(TYPE* begin, TYPE* mid, TYPE* end):
-        Merges two sorted sequential subarrays (begin to mid and mid to end) in-place.
+    TYPE* inplacemergeheapK_<type>(TYPE* begin, TYPE* mid, TYPE* end):
+        Merges two sorted sequential subarrays (begin to mid and mid to end).
         The first subarray is [begin, mid) and the second is [mid, end).
+        Uses heap allocation for temporary storage, fit for all uses, but is
+        slower than the stack version.
 
 
-        -> TYPE* begin  (pointer to the first element of the first subarray [ ex: array1[0] ])
-        -> TYPE* mid    (pointer to the first element of the second subarray [ ex: array1[n1] = array2[0] ])
-        -> TYPE* end    (pointer to the first element after the second subarray that does not belong [ex: array2[n2] ])
+        -> TYPE* begin  (first element of the first subarray [ ex: array1[0] ])
+        -> TYPE* mid    (first element of the second subarray [ ex: array1[n1] = array2[0] ])
+        -> TYPE* end    (first element after the second subarray that does not belong [ex: array2[n2] ])
+        -> return       (void)
+    
+    TYPE* inplacemergeheapK_<type>(TYPE* begin, TYPE* mid, TYPE* end):
+        Merges two sorted sequential subarrays (begin to mid and mid to end).
+        The first subarray is [begin, mid) and the second is [mid, end).
+        Uses stack allocation for temporary storage. Use only when the size of
+        the arrays are not larger than the max stack size, as a stack overflow
+        may occur (system dependent, only use for couple thousand byte sized
+        arrays to be sure, test on various machines for your specific datatype).
+        Faster than the heap version.
+
+
+
+        -> TYPE* begin  (first element of the first subarray [ ex: array1[0] ])
+        -> TYPE* mid    (first element of the second subarray [ ex: array1[n1] = array2[0] ])
+        -> TYPE* end    (first element after the second subarray that does not belong [ex: array2[n2] ])
         -> return       (void)
  */
 
