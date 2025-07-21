@@ -15,15 +15,16 @@
 
     TYPE* mergeK_<type>(TYPE* begin1, TYPE* end1, TYPE* begin2, TYPE* end2, TYPE* output):
         Merges two sorted arrays arrays (array1 and array2), into output array.
-        Make sure that output array's size is not less than both arrays', as it will result of Segmentation Fault.
+        Make sure that output array's size is not less than both arrays', as it
+        will result of Segmentation Fault.
 
 
-        -> TYPE* begin1 (pointer to the first element of the first array [ ex: array1[0] ])
-        -> TYPE* end1   (pointer to the first element after the first array that does not belong [ex: array1[n1] ])
-        -> TYPE* begin2 (pointer to the first element of the second array [ ex: array2[0] ])
-        -> TYPE* end2   (pointer to the first element after the second array that does not belong [ex: array2[n2] ])
-        -> TYPE* output (pointer to the first element of the output array. Make sure it's size is not less than both arrays')
-        -> return       (pointer to the first element in "output" that is not on the merge)
+        -> TYPE* begin1 (first element of the first array [ ex: array1[0] ])
+        -> TYPE* end1   (first element after the first array that does not belong [ex: array1[n1] ])
+        -> TYPE* begin2 (first element of the second array [ ex: array2[0] ])
+        -> TYPE* end2   (first element after the second array that does not belong [ex: array2[n2] ])
+        -> TYPE* output (first element of the output array. Make sure it's size is not less than both arrays')
+        -> return       (first element in "output" that is not on the merge)
  */
 
 #define DEFINE_MERGEK(TYPE, TYPENAME, COMPARE) \
