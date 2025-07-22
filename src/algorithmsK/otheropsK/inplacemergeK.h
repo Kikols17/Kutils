@@ -1,7 +1,7 @@
 #ifndef INPLACEMERGEK_H
 #define INPLACEMERGEK_H
 
-// This is the template macro for the "inplacemergeK_<type>" function
+// This is the template macro for the "inplacemergeheapK_<type>" and "inplacemergestackK_<type>" functions
 /*
     DEFINE_INPLACEMERGEK(TYPE, TYPENAME, COMPARE)
         -> TYPE         (type [ ex: int ])
