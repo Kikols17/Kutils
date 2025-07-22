@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include "issortedK.h"
+#include "sortingK.h"
 
 #define MY_COMPARE(a, b) ((a) > (b))
 DEFINE_ISSORTEDK(int, int, MY_COMPARE)
@@ -16,7 +16,7 @@ int main(int argc, const char *argv[]) {
     }
 
     clock_t start = clock();
-    for (int i=0; i<5; i++) {
+    for (int i=0; i<10000; i++) {
         int res = issortedK_int(&array[0], &array[n]);
     }
     clock_t end = clock();

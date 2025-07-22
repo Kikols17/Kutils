@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "issorteduntilK.h"
+#include "sortingK.h"
 
 #define MY_COMPARE(a, b) ((a) > (b))
 DEFINE_ISSORTEDUNTILK(int, int, MY_COMPARE)

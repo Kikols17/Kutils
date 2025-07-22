@@ -16,7 +16,7 @@ int main(int argc, const char *argv[]) {
     }
 
     clock_t start = clock();
-    for (int i=0; i<5; i++) {
+    for (int i=0; i<10000; i++) {
         int res = is_sorted(&array[0], &array[n]);
     }
     clock_t end = clock();
