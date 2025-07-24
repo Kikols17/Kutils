@@ -30,24 +30,24 @@
 #define DEFINE_PARTITIONK(TYPE, TYPENAME, FUNC, FUNCNAME) \
     \
 TYPE* partitionK_##TYPENAME##_##FUNCNAME(TYPE* begin, TYPE* end) { \
-    while (begin != end && FUNC(*begin)) { \
+    --end; \
+    while (begin <= end && FUNC(*begin)) { \
         ++begin; \
     } \
-    while (begin != end && !FUNC(*(--end))) { \
-        end; \
+    while (begin <= end && !FUNC(*(end))) { \
+        --end; \
     } \
-    if (begin == end) return begin; \
-    ++end; \
     \
-    while (begin != end) { \
+    while (begin <= end) { \
         TYPE temp = *begin; \
-        *begin = *(end-1); \
-        *(--end) = temp; \
+        *begin = *(end); \
+        *(end) = temp; \
         ++begin; \
-        while (begin != end && FUNC(*begin)) { \
+        --end; \
+        while (begin <= end && FUNC(*begin)) { \
             ++begin; \
         } \
-        while (begin != end && !FUNC(*(end-1))) { \
+        while (begin <= end && !FUNC(*(end))) { \
             --end; \
         } \
     } \
