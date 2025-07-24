@@ -20,7 +20,7 @@
 
         -> TYPE* begin  (first element of the first array [ ex: array[0] ])
         -> TYPE* end    (first element after the first array that does not belong [ex: array[n] ])
-        -> return       (first element of the second part [ ex: array[y] ])
+        -> return       (true if the array is partitioned, false otherwise)
  */
 
 #define DEFINE_ISPARTITIONEDK(TYPE, TYPENAME, FUNC, FUNCNAME) \
