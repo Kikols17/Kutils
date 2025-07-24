@@ -33,9 +33,11 @@ TYPE* partitionK_##TYPENAME##_##FUNCNAME(TYPE* begin, TYPE* end) { \
     while (begin != end && FUNC(*begin)) { \
         ++begin; \
     } \
-    while (begin != end && !FUNC(*(end-1))) { \
-        --end; \
+    while (begin != end && !FUNC(*(--end))) { \
+        end; \
     } \
+    if (begin == end) return begin; \
+    ++end; \
     \
     while (begin != end) { \
         TYPE temp = *begin; \
