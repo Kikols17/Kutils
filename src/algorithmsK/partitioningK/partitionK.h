@@ -1,7 +1,7 @@
 #ifndef PARTITIONK_H
 #define PARTITIONK_H
 
-// This is the template macro for the "partitionK_<type>" function
+// This is the template macro for the "partitionK_<type>_<func>" function
 /*
     DEFINE_PARTITIONK(TYPE, TYPENAME, FUNC, FUNCNAME)
         -> TYPE         (type [ ex: int ])
@@ -14,7 +14,7 @@
 
 
 
-    TYPE* partitionK_<type>(TYPE* begin, TYPE* end):
+    TYPE* partitionK_<type>_<func>(TYPE* begin, TYPE* end):
         Partitions the array in two parts based on the function FUNC.
         Elements for which FUNC returns true will be in the first part, and the
         false ones in the second. The pointer to the first element that does not
