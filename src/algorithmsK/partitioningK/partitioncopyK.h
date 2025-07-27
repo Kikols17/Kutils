@@ -38,11 +38,14 @@ void partitioncopyK_##TYPENAME##_##FUNCNAME(TYPE* begin, TYPE* end, TYPE* begint
         if (FUNC(*begin)) { \
             *begint = *begin; \
             ++begint; \
+            ++begin; \
+            continue; \
         } else { \
             *beginf = *begin; \
             ++beginf; \
+            ++begin; \
+            continue; \
         } \
-        ++begin; \
     } \
     *endt = begint; \
     *endf = beginf; \
