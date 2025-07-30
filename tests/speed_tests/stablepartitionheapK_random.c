@@ -19,9 +19,7 @@ int main(int argc, char* argv[]) {
     }
 
     clock_t start = clock();
-    for (int i=0; i<20; ++i) {
-        stablepartitionheapK_int_isEven(array, array + n);
-    }
+    stablepartitionheapK_int_isEven(array, array + n);
     clock_t end = clock();
     double time = (double)(end-start)/CLOCKS_PER_SEC;
     printf("%fs", time);
