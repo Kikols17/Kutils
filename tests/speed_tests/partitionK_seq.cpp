@@ -16,9 +16,7 @@ int main(int argc, char* argv[]) {
     }
 
     clock_t start = clock();
-    for (int i=0; i<10; ++i) {
-        partition(array, array+n, [](int e) { return (e%2 == 0); });
-    }
+    partition(array, array+n, [](int e) { return (e%2 == 0); });
     clock_t end = clock();
     double time = (double)(end-start)/CLOCKS_PER_SEC;
     printf("%fs", time);
